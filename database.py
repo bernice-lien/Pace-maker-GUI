@@ -1,10 +1,12 @@
 from tkinter import *
+from pages import *
+import pages
 import sqlite3
 from tkinter import messagebox
 import tkinter as tk
-import welcome_screen
 
 class database():
+
     def changePassword(self,account_id, newPassword):
 
         #open connection
@@ -68,6 +70,7 @@ class database():
 
     def update(self,record_id):
 
+        #mode 
         #open connection
         conn = sqlite3.connect('login_list.db')
         c = conn.cursor()
@@ -242,16 +245,16 @@ class database():
 
                     })
 
-            welcome_screen.login_name = str(firstName_edit.get() + " " + lastName_edit.get())
-            welcome_screen.login_LRL = int(lowerRateLimit_edit.get())
-            welcome_screen.login_URL = int(upperRateLimit_edit.get())
-            welcome_screen.login_AA = float(atrialAmplitude_edit.get())
-            welcome_screen.login_APW = float(atrialPulseWidth_edit.get())
-            welcome_screen.login_VA = float(ventricularAmplitude_edit.get())
-            welcome_screen.login_VPW = float(ventricularPulseWidth_edit.get())
-            welcome_screen.login_VRP = int(VRP_edit.get())
-            welcome_screen.login_ARP = int(ARP_edit.get())
-            welcome_screen.login_M = str(mode_edit.get())
+            pages.login_name = str(firstName_edit.get() + " " + lastName_edit.get())
+            pages.login_LRL = int(lowerRateLimit_edit.get())
+            pages.login_URL = int(upperRateLimit_edit.get())
+            pages.login_AA = float(atrialAmplitude_edit.get())
+            pages.login_APW = float(atrialPulseWidth_edit.get())
+            pages.login_VA = float(ventricularAmplitude_edit.get())
+            pages.login_VPW = float(ventricularPulseWidth_edit.get())
+            pages.login_VRP = int(VRP_edit.get())
+            pages.login_ARP = int(ARP_edit.get())
+            pages.login_M = str(mode_edit.get())
         
         #close connection
         conn.commit()
@@ -323,7 +326,7 @@ class database():
         mode_edit_label = Label(editor_frame, text = "Mode", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
 
         #save button
-        save_btn = Button(editor_frame, text = "Save Changes", command= lambda: self.update(welcome_screen.login_id))
+        save_btn = Button(editor_frame, text = "Save Changes", command= lambda: self.update(pages.login_id))
         back_btn = Button(editor_frame, text = "Back", command= editor.destroy)
 
         edit_data_label.grid(row=0, column=0, columnspan=2, sticky="news", pady=10)

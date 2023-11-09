@@ -1,8 +1,10 @@
 import tkinter as tk
-from welcome_screen import open
+import pages
+from pages import *
 
 #run this file to open the program
 def main():
-    open()
+    page = pages()
+    page.start()
        
 main()
