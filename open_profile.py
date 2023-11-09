@@ -1,11 +1,11 @@
 import tkinter as tk
 from tkinter import messagebox
-from AAI_screen import open_AAI
-from AOO_screen import open_AOO
-from VOO_screen import open_VOO
-from VVI_screen import open_VVI
+from modes import *
 import welcome_screen
 from database import *
+
+db = database()
+mode = modes()
 
 def open_profile():
     profile = tk.Tk()
@@ -18,7 +18,7 @@ def open_profile():
 
     def reopen():
         profile.destroy()
-        edit(str(welcome_screen.login_id))
+        db.edit(str(welcome_screen.login_id))
         open_profile()
         
     message = "Welcome," + " " + welcome_screen.login_name #matches username entered to name stored in database
@@ -37,10 +37,10 @@ def open_profile():
     welcome_message = tk.Label(profile_topframe, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
     tracing_message = tk.Label(profile_middleframe, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
     sign_out = tk.Button(profile_bottomframe, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
-    aoo = tk.Button(profile_middleframe, text = "AOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = open_AOO)
-    voo = tk.Button(profile_middleframe, text = "VOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = open_VOO)
-    aai = tk.Button(profile_middleframe, text = "AAI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = open_AAI)
-    vvi = tk.Button(profile_middleframe, text = "VVI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = open_VVI)
+    aoo = tk.Button(profile_middleframe, text = "AOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
+    voo = tk.Button(profile_middleframe, text = "VOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOO)
+    aai = tk.Button(profile_middleframe, text = "AAI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAI)
+    vvi = tk.Button(profile_middleframe, text = "VVI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVI)
    
     profile_edit = tk.Button(profile_bottomframe, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
 
