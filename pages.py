@@ -132,6 +132,10 @@ class pages():
         voo = tk.Button(profile_middleframe, text = "VOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOO)
         aai = tk.Button(profile_middleframe, text = "AAI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAI)
         vvi = tk.Button(profile_middleframe, text = "VVI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVI)
+        aoor = tk.Button(profile_middleframe, text = "AOOR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOOR)
+        voor = tk.Button (profile_middleframe, text = "VOOR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOOR)
+        aair = tk.Button (profile_middleframe, text = "AAIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAIR)
+        vvir = tk.Button (profile_middleframe, text = "VVIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVIR)
     
         profile_edit = tk.Button(profile_bottomframe, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
 
@@ -166,6 +170,10 @@ class pages():
         voo.grid(row=3, column=2, pady=10)
         aai.grid(row=4, column=2)
         vvi.grid(row=5, column=2, pady=10)
+        aoor.grid(row=6, column=2) 
+        voor.grid(row=7, column=2, pady=10) 
+        aair.grid(row=8, column=2) 
+        vvir.grid(row=9, column=2, pady=10) 
 
         #fixing row spacing
         profile_middleframe.grid_rowconfigure(6, minsize=35)

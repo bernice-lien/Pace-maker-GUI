@@ -55,3 +55,59 @@ class modes():
         backVOO.grid(row = 1, column = 0)
         voo_middleframe.pack()
         voo.mainloop()
+
+    def open_AOOR(self): 
+        AOOR = tk.Tk()
+        AOOR.geometry("500x400")
+        AOOR.configure(bg='#4863A0')
+        AOOR.title("AOOR Page")  
+        AOOR_middleframe = tk.Frame(AOOR, bg = '#4863A0')
+        welcome_message = tk.Label(AOOR_middleframe, text = "AOOR", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        backAOOR = tk.Button(AOOR_middleframe, text = "Back", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = AOOR.destroy)
+        welcome_message.grid(row = 0, column = 0)
+        backAOOR.grid(row = 1, column = 0)
+        AOOR_middleframe.pack()
+        AOOR.mainloop()
+
+    def open_VOOR(self): 
+        VOOR = tk.Tk() 
+        VOOR.geometry("500x400")
+        VOOR.configure(bg='#4863A0')
+        VOOR.title("VOOR Page") 
+        VOOR_middleframe = tk.Frame(VOOR, bg = '#4863A0')
+        welcome_message = tk.Label(VOOR_middleframe, text = "VOOR", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        backVOOR = tk.Button(VOOR_middleframe, text = "Back", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = VOOR.destroy)
+        welcome_message.grid(row = 0, column = 0)
+        backVOOR.grid(row = 1, column = 0)
+        VOOR_middleframe.pack()
+        VOOR.mainloop() 
+
+    def open_AAIR(self): 
+        AAIR = tk.Tk()
+        AAIR.geometry("500x400")
+        AAIR.configure(bg='#4863A0')
+        AAIR.title("AAIR Page")
+        AAIR_middleframe = tk.Frame(AAIR, bg = '#4863A0')
+        welcome_message = tk.Label(AAIR_middleframe, text = "AAIR", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        backAAIR = tk.Button(AAIR_middleframe, text = "Back", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = AAIR.destroy)
+        welcome_message.grid(row = 0, column = 0)
+        backAAIR.grid(row = 1, column = 0)
+        AAIR_middleframe.pack()
+        AAIR.mainloop() 
+    
+   
+
+    def open_VVIR(self): 
+        VVIR = tk.Tk()
+        VVIR.geometry("500x400")
+        VVIR.configure(bg='#4863A0')
+        VVIR.title("VVIR Page") 
+        VVIR_middleframe = tk.Frame(VVIR, bg = '#4863A0')
+        welcome_message = tk.Label(VVIR_middleframe, text = "VVIR", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        backVVIR = tk.Button(VVIR_middleframe, text = "Back", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = VVIR.destroy)
+        welcome_message.grid(row = 0, column = 0)
+        backVVIR.grid(row = 1, column = 0)
+        VVIR_middleframe.pack()
+        VVIR.mainloop()
+    
+    
