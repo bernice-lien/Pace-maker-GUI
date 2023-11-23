@@ -5,6 +5,67 @@ import sqlite3
 from tkinter import messagebox
 import tkinter as tk
 
+'''
+0 username 
+1 password
+2 firstName 
+3 lastName 
+4 lowerRateLimit 
+5 upperRateLimit 
+6 maxSensLimit 
+7 atrialAmplitude 
+8 ventricularAmplitude 
+9 atrialPulseWidth 
+10 ventricularPulseWidth 
+11 atrialSens 
+12 vetricularSens 
+13 VRP 
+14 ARP 
+15 PVARP 
+16 hysteresis 
+17 rateSmoothing 
+18 activityThreshold 
+19 reactionTime 
+20 responseFactor 
+21 recoveryTime
+22 Mode 
+23 ID
+
+#create database
+conn = sqlite3.connect('login_list.db')
+
+# Create cursor
+c = conn.cursor()
+
+c.execute("""CREATE TABLE login_info(
+            username text, 
+            password text, 
+            firstName text, 
+            lastName text, 
+            lowerRateLimit integer,
+            upperRateLimit integer,
+            maxSensLimit integer,
+            atrialAmplitude real,
+            ventricularAmplitude real,
+            atrialPulseWidth real,
+            ventricularPulseWidth real,
+            atrialSens real,
+            vetricularSens real,
+            VRP integer,
+            ARP integer,
+            PVARP integer,
+            hysteresis integer,
+            rateSmoothing real,
+            activityThreshold text,
+            reactionTime integer,
+            responseFactor integer,
+            recoveryTime integer,
+            Mode integer
+          )""")
+#close connection
+conn.commit()
+conn.close()
+'''
 class database():
 
     def changePassword(self,account_id, newPassword):
@@ -417,16 +478,26 @@ class database():
 
         lowerRateLimit = 60
         upperRateLimit = 120
+        maxSensLimit = 120
         atrialAmplitude = 3.5
-        atrialPulseWidth = 0.4
         ventricularAmplitude = 3.5
+        atrialPulseWidth = 0.4
         ventricularPulseWidth = 0.4
+        atrialSens = 0.75
+        ventricularSens = 2.5
         VRP = 320
         ARP = 250
+        PVARP = 250
+        hysteresis = 0
+        rateSmoothing = 0
+        activityThreshold = "medium" 
+        reactionTime = 30
+        responseFactor = 8
+        recoveryTime = 5
         mode = "OFF"
 
         #insert into table
-        c.execute("INSERT INTO login_info VALUES(:username,:password,:firstName,:lastName,:lowerRateLimit,:upperRateLimit,:atrialAmplitude,:atrialPulseWidth,:ventricularAmplitude,:ventricularPulseWidth,:VRP,:ARP,:mode)",
+        c.execute("INSERT INTO login_info VALUES(:username,:password,:firstName,:lastName,:lowerRateLimit,:upperRateLimit,:maxSensLimit,:atrialAmplitude,:ventricularAmplitude,:atrialPulseWidth,:ventricularPulseWidth,:atrialSens,:ventricularSens,:VRP,:ARP,:PVARP,:hysteresis,:rateSmoothing,:activityThreshold,:reactionTime,:responseFactor,:recoveryTime,:mode)",
                 {
                     'username':username,
                     'password':password,
@@ -434,12 +505,22 @@ class database():
                     'lastName':lastName,
                     'lowerRateLimit':lowerRateLimit,
                     'upperRateLimit':upperRateLimit,
+                    'maxSensLimit':maxSensLimit,
                     'atrialAmplitude':atrialAmplitude,
-                    'atrialPulseWidth':atrialPulseWidth,
                     'ventricularAmplitude':ventricularAmplitude,
+                    'atrialPulseWidth':atrialPulseWidth,
                     'ventricularPulseWidth':ventricularPulseWidth,
+                    'atrialSens':atrialSens,
+                    'ventricularSens':ventricularSens,
                     'VRP':VRP,
                     'ARP':ARP,
+                    'PVARP':PVARP,
+                    'hysteresis':hysteresis,
+                    'rateSmoothing':rateSmoothing,
+                    'activityThreshold':activityThreshold, 
+                    'reactionTime':reactionTime,
+                    'responseFactor':responseFactor,
+                    'recoveryTime':recoveryTime,
                     'mode':mode
                 })
 

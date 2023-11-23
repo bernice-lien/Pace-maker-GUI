@@ -14,14 +14,24 @@ class pages():
     global login_id
     global login_LRL
     global login_URL
+    global login_MSL
     global login_AA
-    global login_APW
     global login_VA
-    global login_VPW 
+    global login_APW
+    global login_VPW
+    global login_AS
+    global login_VS 
     global login_VRP
     global login_ARP
+    global login_PVARP 
+    global login_H
+    global login_RS 
+    global login_AT 
+    global login_RT 
+    global login_RF 
+    global login_recT
     global login_M
-    
+
     def welcome_screen(self):
 
         def open():
@@ -115,13 +125,27 @@ class pages():
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
         LRLmessage = "Lower Rate Limit: " + str(login_LRL)
         URLmessage = "Upper Rate Limit: " + str(login_URL)
-        APWmessage = "Atrial Pulse Width: " + str(login_APW)
+        MSLmessage = "Maximum Sensor Limit: " + str(login_MSL)
         AAmessage = "Atrial amplitude: " + str(login_AA)
-        ARPmessage = "ARP: " + str(login_ARP)
+        VAmessage = "Ventricular Amplitude: " + str(login_VA)
+        APWmessage = "Atrial Pulse Width: " + str(login_APW)
         VPWmessage = "Ventricular Pulse Width: " + str(login_VPW)
-        VAmessage = "Vntricular Amplitude: " + str(login_VA)
+        ASmessage = "Atrial Sensitivity: " + str(login_AS)
+        VSmessage = "Pacing Mode: " + str(login_VS)
+        ARPmessage = "ARP: " + str(login_ARP)
         VRPmessage = "VRP: " + str(login_VRP)
+        PVARPmessage = "PVARP: " + str(login_PVARP)
+        Hmessage = "Hysteresis: " + str(login_H)
+        RSmessage = "Rate Smoothing: " + str(login_RS)
+        ATmessage = "Activity Threshold: " + str(login_AT)
+        RTmessage = "Reaction Time: " + str(login_RT)
+        RFmessge = "Response Factor: " + str(login_RF)
+        recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
+        
+        
+
+
 
         #create info for corner of screen
         connection_message = tk.Label(profile, text="Connection Status: Pacemaker not connected\nPacemaker version: 1\nDate of implant: 01/01/2023", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
@@ -269,6 +293,7 @@ class pages():
         def login():
             logins = db.query()
             loginSuccessful = False
+            
             global login_name
             global login_id
             global login_LRL
@@ -280,7 +305,7 @@ class pages():
             global login_VRP
             global login_ARP
             global login_M
-    
+            
             for login in logins:
                 if username_entry.get()==login[0] and password_entry.get()==login[1] and username_entry.get() == "admin":
 
