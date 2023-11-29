@@ -178,6 +178,7 @@ class database():
         conn.commit()
         conn.close()
 
+
     def update(self,record_id):
         #open connection
         conn = sqlite3.connect('login_list.db')
