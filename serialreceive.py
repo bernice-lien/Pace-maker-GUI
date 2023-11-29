@@ -4,7 +4,7 @@ from time import sleep
 
 rf = serial.Serial("COM6", baudrate=115200)
 
-st = struct.Struct('<BBBffffHHffB')
+st = struct.Struct('<BBBffffHHffBBB')
 
 transmit = 0
 mode = 3
@@ -18,19 +18,23 @@ VRP = 600
 A_Sens = 0.25
 V_Sens = 0.26
 Response_Factor = 4
+LRL = 70
+URL = 150
 
-serial_com = st.pack(transmit, mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_Width, ARP, VRP, A_Sens, V_Sens, Response_Factor)
+
+serial_com = st.pack(transmit, mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_Width, ARP, VRP, A_Sens, V_Sens, Response_Factor, LRL, URL)
 
 rf.write(serial_com)
-sleep(0.1)
 
-uC = struct.Struct('<BBBffffHHffB')
-size = struct.calcsize('<BBHHffffff')
+size = struct.calcsize('<BffBdd')
+print(size)
 data = rf.read(size)
-tup = struct.unpack('<BBHHffffff',data)
+tup = struct.unpack('<BffBdd',data)
 print(tup[0])
 print(tup[1])
 print(tup[2])
 print(tup[3])
 print(tup[4])
+
+
 rf.close()

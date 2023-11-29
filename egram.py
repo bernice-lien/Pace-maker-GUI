@@ -97,6 +97,7 @@ import csv
 import random
 import time
 from threading import *
+import serialcomms
 
 def window():
     root = Tk()
@@ -132,7 +133,8 @@ def window():
 
 def data_gen():
     x_value = 0
-    amplitude = 1000
+    amplitude = 0
+    pulse = 0
 
     fieldnames = ["x_value", "amplitude"]
 
@@ -152,10 +154,22 @@ def data_gen():
             csv_writer.writerow(info)
             print(x_value, amplitude)
 
-            x_value += 1
-            amplitude = amplitude + random.randint(-6, 8) #will come from serial communication
+            x_value += 0.1
+            val = serialcomms.egramreceive()
+            if (pulse == 9):
+                amplitude = 3.3
+            elif (pulse == 10):
+                amplitude = 0.1
+            else:
+                amplitude = val[3]*3.3
 
-        time.sleep(1)
+            if (pulse == 10):
+                pulse = 0
+            else:
+                pulse += 1
+
+
+        time.sleep(0.1)
 
 T = Thread(target = data_gen)
 T.setDaemon(True)
