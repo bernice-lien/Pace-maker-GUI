@@ -258,8 +258,13 @@ class pages():
         def egram_win():
             window_e = tk.Tk()
             window_e.title("Login")
-            window_e.geometry('500x400')
+            window_e.geometry('200x100')
             window_e.configure(bg='#4863A0')
+            mode_message = tk.Label(window_e, text="Red Line: Ventricular Signal\nBlue Line: Atrial Signal", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+            AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
+            VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
+            BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
+            mode_message.grid(row=0, column=0)
             egram_test.graph1()
         
         def open_about():
@@ -411,6 +416,7 @@ class pages():
 
         connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 10)
+        
         tracing_message.grid(row=1, column=2, padx=25)
         
         

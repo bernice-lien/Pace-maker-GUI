@@ -36,7 +36,7 @@ def data_gen():
             csv_writer.writerow(info)
             print(x_value, vent_amp, atr_amp)
 
-            x_value += 1
+            x_value += 2
             val = serialcomms.egramreceive()
             vent_amp = val[4]*3.3 #will come from serial communication
             atr_amp = val[3]*3.3
@@ -60,7 +60,6 @@ def graph1():
         y2 = data['atr_amp']
 
         plt.cla()
-
         plt.plot(x,y1,color="red")
         plt.plot(x,y2,color="blue")
 

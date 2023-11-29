@@ -178,6 +178,7 @@ class database():
         conn.commit()
         conn.close()
 
+
     def update(self,record_id):
         #open connection
         conn = sqlite3.connect('login_list.db')
@@ -230,10 +231,7 @@ class database():
                 flag = False
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 5ppm.")
             
-        """ #max sensor limit
-        if (mode_edit.get() == "AOO" or mode_edit.get() == "VOO" or mode_edit.get() == "AAI" or mode_edit.get() == "VVI"):
-            if (maxSensLimit_edit.get() != ):
-                messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Maximum senor rate must be zero for non-rate adaptive modes.")
+        #max sensor limit
         if not(maxSensLimit_edit.get().isdigit()):
             messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Maximum sensor rate must be a non-negative whole number.")
         if (int(maxSensLimit_edit.get()) < 50) or (int(maxSensLimit_edit.get()) > 175): #out of range
@@ -241,7 +239,7 @@ class database():
         if 50 <= int(maxSensLimit_edit.get()) <= 175: #within range
             if(int(maxSensLimit_edit.get()) % 5) != 0: #wrong step size
                 flag = False
-                messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Starting value must be incremented by 5ppm.") """
+                messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Starting value must be incremented by 5ppm.")
 
         #atrial amplitude
         if not((atrialAmplitude_edit.get())[0].isdigit()):
@@ -284,7 +282,7 @@ class database():
                 flag = False
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 0.5V between 3.5-7.0V.")
 
-        # #ventricular pulse width
+        #ventricular pulse width
         if not(ventricularPulseWidth_edit.get()[0].isdigit()):
             messagebox.showinfo(title="Invalid Ventricular Pulse Width",message="Ventricular pulse width must be a non-negative decimal number.")
         if (float(ventricularPulseWidth_edit.get()) < 0.05) or (0.05 < float(ventricularPulseWidth_edit.get()) < 0.1) or (float(ventricularPulseWidth_edit.get()) > 1.9): #check if atrial pulse width is within range
@@ -320,12 +318,73 @@ class database():
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 10ms.")
 
         #PVARP
+        if not(PVARP_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid PVARP",message="PVARP must be a non-negative whole number.")
+        if (int(PVARP_edit.get()) < 150) or (int(PVARP_edit.get()) > 500): #out of range
+            flag = False
+            messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be between 30-175ppm.")
+        if 150 <= int(PVARP_edit.get()) <= 500: #within range
+            if(int(PVARP_edit.get()) % 10) != 0: #wrong step size
+                flag = False
+                messagebox.showinfo(title="Invalid PVARP Value",message="Starting value must be incremented by 10ppm.")
+
         #hysteresis
+        if not(hysteresis_edit.get().isdigit()): #make sure input is whole and non-negative
+            flag = False
+            messagebox.showinfo(title="Invalid Hysteresis Rate Limit",message="Hysteresis rate limit must be a non-negative whole number.")
+        if (0 < int(hysteresis_edit.get()) < 30) or int(float(hysteresis_edit.get())) > 175: #check if lower rate limit is within range
+            flag = False
+            messagebox.showinfo(title="Invalid Hysteresis Rate Limit",message="Hysteresis rate limit must be between 30-175ppm.")
+        if 30 <= int(hysteresis_edit.get()) <= 50: #check if correct incrementation for 30-50ppm
+            if (int(hysteresis_edit.get()) % 5) != 0:
+                flag = False
+                messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 5ppm between 30-50ppm.")
+        if 90 <= int(hysteresis_edit.get()) <= 175: #check if correct incrementation for 90-175ppm
+            if (int(hysteresis_edit.get()) % 5) != 0:
+                flag = False
+                messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 5ppm between 90-175ppm.")
+
         #rate smoothing
+        if not(rateSmoothing_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid Rate Smoothing Value",message="Rate smoothing must be a non-negative whole percentage.")
+        if (int(rateSmoothing_edit.get()) != 0) or (int(rateSmoothing_edit.get()) != 3) or (int(rateSmoothing_edit.get()) != 6) or (int(rateSmoothing_edit.get()) != 9) or (int(rateSmoothing_edit.get()) != 12) or (int(rateSmoothing_edit.get()) != 15) or (int(rateSmoothing_edit.get()) != 18) or (int(rateSmoothing_edit.get()) != 21) or (int(rateSmoothing_edit.get()) != 25):
+            flag = False
+            messagebox.showinfo(title="Invalid Rate Smoothing Percentage",message="Rate smoothing percentage must be a multiple of 3 between 0 and 25.")
+    
         #activity threshold
+        thresholds = ["V-Low","Low","Med-Low","Med","Med-High","High","V-High"]
+        flag2 = False
+        for threshold in thresholds:
+            if activityThreshold_edit.get() == threshold:
+                flag2 = True
+        if flag2 == False:
+            flag = False
+            messagebox.showinfo(title="Invalid Threshold",message="Enter one of the following thresholds: V-Low, Low, Med-Low, Med, Med-High, High, V-High.")
+
         #reaction time
+        if not(reactionTime_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid Reaction Time",message="Reaction time must be a non-negative whole number.")
+        if (int(reactionTime_edit.get()) < 10) or (int(reactionTime_edit.get()) > 50): #out of range
+            flag = False
+            messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be between 30-175ppm.")
+        if 10 <= int(PVARP_edit.get()) <= 50: #within range
+            if(int(PVARP_edit.get()) % 10) != 0: #wrong step size
+                flag = False
+                messagebox.showinfo(title="Invalid Reaction Time",message="Starting value must be incremented by 10ppm.")
+        
         #response factor
+        if not(responseFactor_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid Response Factor",message="Response factor must be a non-negative whole number.")
+        if (int(responseFactor_edit.get()) < 1) or (int(responseFactor_edit.get()) > 16): #out of range
+            flag = False
+            messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be between 30-175ppm.")
+
         #recovery time
+        if not(recoveryTime_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid Response Factor",message="Response factor must be a non-negative whole number.")
+        if (int(recoveryTime_edit.get()) < 2) or (int(recoveryTime_edit.get()) > 16): #out of range
+            flag = False
+            messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be between 30-175ppm.")
 
         #mode
         modes = ["AOO", "AAI", "VOO", "VVI", "AOOR", "VOOR", "AAIR", "VVIR"]
