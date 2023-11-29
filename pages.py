@@ -5,6 +5,7 @@ from tkinter import messagebox
 from database import *
 from modes import *
 import serial
+import egram_test
 import serial.tools.list_ports
 import time
 from fpdf import FPDF
@@ -259,7 +260,8 @@ class pages():
             window_e.title("Login")
             window_e.geometry('500x400')
             window_e.configure(bg='#4863A0')
-            
+            egram_test.graph1()
+
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
         LRLmessage = "Lower Rate Limit: " + str(login_LRL)
