@@ -318,7 +318,9 @@ class pages():
         voor = tk.Button (profile_frame, text = "VOOR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOOR)
         aair = tk.Button (profile_frame, text = "AAIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAIR)
         vvir = tk.Button (profile_frame, text = "VVIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVIR)
-    
+        dddr = tk.Button (profile_frame, text = "DDDR", bg ='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_DDDR)
+
+
         profile_edit = tk.Button(profile_frame, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
         temp_reportb = tk.Button(profile_frame, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
         egram_b = tk.Button(profile_frame, text = "Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = egram_win) 
@@ -380,6 +382,7 @@ class pages():
         voor.grid(row=7, column=2) 
         aair.grid(row=8, column=2) 
         vvir.grid(row=9, column=2) 
+        dddr.grid(row=10, column=2) 
 
         profile_frame.pack()
         

@@ -119,5 +119,18 @@ class modes():
         backVVIR.grid(row = 1, column = 0)
         VVIR_middleframe.pack()
         VVIR.mainloop()
+
+    def open_DDDR(self): 
+        DDDR = tk.Tk()
+        DDDR.geometry("500x400")
+        DDDR.configure(bg='#4863A0')
+        DDDR.title("DDDR Page") 
+        DDDR_middleframe = tk.Frame(DDDR, bg = '#4863A0')
+        welcome_message = tk.Label(DDDR_middleframe, text = "DDDR", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        backDDDR = tk.Button(DDDR_middleframe, text = "Back", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = DDDR.destroy)
+        welcome_message.grid(row = 0, column = 0)
+        backDDDR.grid(row = 1, column = 0)
+        DDDR_middleframe.pack()
+        DDDR.mainloop()
     
     
