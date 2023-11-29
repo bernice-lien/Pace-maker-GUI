@@ -111,7 +111,7 @@ class database():
                 lowerRateLimit = account[4]
                 upperRateLimit = account[5]
                 atrialAmplitude = account[6]
-                atrialPulseWidth = account[7]
+                atrialPulseWidth = account[7]8
                 ventricularAmplitude = account[8]
                 ventricularPulseWidth = account[9]
                 VRP_ = account[10]
@@ -377,12 +377,22 @@ class database():
             pages.login_name = str(firstName_edit.get() + " " + lastName_edit.get())
             pages.login_LRL = int(lowerRateLimit_edit.get())
             pages.login_URL = int(upperRateLimit_edit.get())
+            pages.login_MSL = int(maxSensLimit_edit.get())
             pages.login_AA = float(atrialAmplitude_edit.get())
-            pages.login_APW = float(atrialPulseWidth_edit.get())
             pages.login_VA = float(ventricularAmplitude_edit.get())
+            pages.login_APW = float(atrialPulseWidth_edit.get())
             pages.login_VPW = float(ventricularPulseWidth_edit.get())
+            pages.login_AS = float(atrialSens_edit.get())
+            pages.login_VS = float(ventricularSens_edit.get())
             pages.login_VRP = int(VRP_edit.get())
             pages.login_ARP = int(ARP_edit.get())
+            pages.login_PVARP = int(PVARP_edit.get())
+            pages.login_H = int(hysteresis_edit.get())
+            pages.login_RS = int(rateSmoothing_edit.get())
+            pages.login_AT = str(activityThreshold_edit.get())
+            pages.login_RT = int(reactionTime_edit.get())
+            pages.login_RF = int(responseFactor_edit.get())
+            pages.login_recT = int(recoveryTime_edit.get())
             pages.login_M = str(mode_edit.get())
         
         #close connection

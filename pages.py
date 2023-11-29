@@ -7,7 +7,7 @@ from modes import *
 import serial
 import serial.tools.list_ports
 import time
-from fpdf import FPDF
+#from fpdf import FPDF
 
 db = database()
 mode = modes()
@@ -628,7 +628,7 @@ class pages():
 
         create_window.mainloop() #infinite loop that executes the app
 
-    def report(self):      
+"""     def report(self):      
         # save FPDF() class into a 
         # variable pdf
         pdf = FPDF()
@@ -649,5 +649,5 @@ class pages():
         
         # save the pdf with name .pdf
         pdf.output("GFG.pdf")  
-    
+     """
 
