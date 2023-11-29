@@ -7,7 +7,7 @@ from modes import *
 import serial
 import serial.tools.list_ports
 import time
-#from fpdf import FPDF
+from fpdf import FPDF
 
 db = database()
 mode = modes()
@@ -216,6 +216,33 @@ class pages():
             profile.destroy()
             db.edit(str(login_id))
             page.open_profile()
+
+        ### BERNICE BERNICE I WAS HERE
+        def temp_report():
+            pdf = FPDF()
+
+            # Add a page
+            pdf.add_page()
+
+            # set style and size of font 
+            # that you want in the pdf
+            pdf.set_font("Arial", size = 10)
+
+            # create a cell
+            pdf.cell(200, 10, txt = "Temporary Report", 
+                    ln = 1, align = 'C')
+
+            # add another cell
+            pdf.cell(200, 10, txt = "Patient: " + login_name, ln = 2, align = 'C')
+            pdf.cell(200, 10, txt = "Institution: " + "McMaster University" ,ln = 2, align = 'C')
+            pdf.cell(200, 10, txt = "Device Model: " + "12.0   Serial Number: 00395012" ,ln = 2, align = 'C')
+            pdf.cell(200, 10, txt = "Software Version: " + "6.1v   DCM Serial Number: 30194892" ,ln = 2, align = 'C')
+            pdf.cell(200, 10,  txt = "/n LRL: " + login_LRL + "/n URL: " + login_URL,ln = 2, align = 'C')
+
+            # login_MSL   login_AA   login_VA   login_APW   login_VPW   login_AS   login_VS   login_VRP   login_ARP   login_PVARP   login_H   login_RS   login_AT   login_RT  login_RF  login_recT  login_M
+
+            # save the pdf with name .pdf
+            pdf.output("bb2.pdf")  
         
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
@@ -276,7 +303,7 @@ class pages():
         vvir = tk.Button (profile_middleframe, text = "VVIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVIR)
     
         profile_edit = tk.Button(profile_bottomframe, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
-
+        temp_reportb = tk.Button(profile_bottomframe, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
         #pacing modes
         LRLmessage_title = tk.Label(profile_middleframe, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         URLmessage_title = tk.Label(profile_middleframe, text= URLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -344,7 +371,9 @@ class pages():
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 20)
         tracing_message.grid(row=1, column=2, pady=10)
         profile_edit.grid(row=0, column = 0)
-        sign_out.grid(row=1, column=0, pady=10)
+        temp_reportb.grid(row=0, column=1, padx=10)
+        sign_out.grid(row=0, column=2, padx=10)
+        
         aoo.grid(row=2, column=2)
         voo.grid(row=3, column=2)
         aai.grid(row=4, column=2)
@@ -630,30 +659,4 @@ class pages():
 
         create_window.mainloop() #infinite loop that executes the app
 
-<<<<<<< HEAD
-    
-=======
-"""     def report(self):      
-        # save FPDF() class into a 
-        # variable pdf
-        pdf = FPDF()
-        
-        # Add a page
-        pdf.add_page()
-        
-        # set style and size of font 
-        # that you want in the pdf
-        pdf.set_font("Arial", size = 15)
-        
-        # create a cell
-        pdf.cell(200, 10, txt = "Temporary Report", 
-                ln = 1, align = 'C')
-        
-        # add another cell
-        pdf.cell(200, 10, txt = "Patient" + login_name ,ln = 2, align = 'C')
-        
-        # save the pdf with name .pdf
-        pdf.output("GFG.pdf")  
-     """
->>>>>>> 12359a03c4f907c65206941fa5e56657bd8efe19
 
