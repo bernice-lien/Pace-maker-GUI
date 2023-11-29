@@ -252,7 +252,8 @@ class pages():
             pdf.cell(200, 10,  txt = "Reaction Time: " + str(login_RT) + "  Response Factor: " + str(login_RF)  + "  Recovery Time: " + str(login_recT) + "  Pacing Mode: " + str(login_M), ln = 2, align = 'C')
 
             # save the pdf with name .pdf
-            pdf.output(login_name + " temporary report.pdf")  
+            
+            pdf.output('D', login_name + " temporary report.pdf")  
         
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
