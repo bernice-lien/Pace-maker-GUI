@@ -58,6 +58,8 @@ class pages():
     global login_recT
     global login_M
     
+
+
     def welcome_screen(self):
 
         def open():
@@ -628,26 +630,5 @@ class pages():
 
         create_window.mainloop() #infinite loop that executes the app
 
-    def report(self):      
-        # save FPDF() class into a 
-        # variable pdf
-        pdf = FPDF()
-        
-        # Add a page
-        pdf.add_page()
-        
-        # set style and size of font 
-        # that you want in the pdf
-        pdf.set_font("Arial", size = 15)
-        
-        # create a cell
-        pdf.cell(200, 10, txt = "Temporary Report", 
-                ln = 1, align = 'C')
-        
-        # add another cell
-        pdf.cell(200, 10, txt = "Patient" + login_name ,ln = 2, align = 'C')
-        
-        # save the pdf with name .pdf
-        pdf.output("GFG.pdf")  
     
 
