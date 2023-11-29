@@ -410,6 +410,10 @@ class database():
         c.execute("SELECT * FROM login_info WHERE oid = " + record_id)
         records = c.fetchall() # list of lists for each row
 
+        #close connection
+        conn.commit()
+        conn.close() 
+
         #global variables for text box names (this is needed to pass the contents of the box to the update function)
         global username_edit 
         global password_edit
@@ -437,7 +441,7 @@ class database():
 
         editor = Tk()
         editor.title("Edit Profile")
-        editor.geometry("500x700")
+        editor.geometry("500x800")
         editor.configure(bg='#4863A0')
 
         editor_frame = tk.Frame(editor, bg='#4863A0')
@@ -627,9 +631,7 @@ class database():
 
         editor_frame.pack()
         editor.mainloop()
-        #close connection
-        conn.commit()
-        conn.close() 
+
 
     #delete function
     def delete(self,idNum):
