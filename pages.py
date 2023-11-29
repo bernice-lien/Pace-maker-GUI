@@ -8,6 +8,7 @@ import serial
 import serial.tools.list_ports
 import time
 from fpdf import FPDF
+from datetime import datetime
 
 db = database()
 mode = modes()
@@ -229,20 +230,33 @@ class pages():
             pdf.set_font("Arial", size = 10)
 
             # create a cell
-            pdf.cell(200, 10, txt = "Temporary Report", 
-                    ln = 1, align = 'C')
+            pdf.cell(200, 5, txt = "Temporary Report", 
+                    ln = 1, align = 'L')
 
             # add another cell
-            pdf.cell(200, 10, txt = "Patient: " + login_name, ln = 2, align = 'C')
-            pdf.cell(200, 10, txt = "Institution: " + "McMaster University" ,ln = 2, align = 'C')
-            pdf.cell(200, 10, txt = "Device Model: " + "12.0   Serial Number: 00395012" ,ln = 2, align = 'C')
-            pdf.cell(200, 10, txt = "Software Version: " + "6.1v   DCM Serial Number: 30194892" ,ln = 2, align = 'C')
-            pdf.cell(200, 10,  txt = "/n LRL: " + login_LRL + "/n URL: " + login_URL,ln = 2, align = 'C')
+            pdf.cell(200, 5, txt = "Patient: " + login_name, ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Institution: " + "McMaster University" ,ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Device Model: " + "12.0   Serial Number: 00395012" ,ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Software Version: " + "6.1v   DCM Serial Number: 30194892" ,ln = 2, align = 'L')
+            now = datetime.now()
+ 
+            # dd/mm/YY H:M:S
+            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            pdf.cell(200, 5, txt = "Date and Time: " + dt_string ,ln = 2, align = 'L')
 
-            # login_MSL   login_AA   login_VA   login_APW   login_VPW   login_AS   login_VS   login_VRP   login_ARP   login_PVARP   login_H   login_RS   login_AT   login_RT  login_RF  login_recT  login_M
+            pdf.cell(200, 30, txt = "" ,ln = 2, align = 'C')
+
+            pdf.cell(200, 10,  txt = "LRL: " + str(login_LRL) + "  URL: " + str(login_URL) + "  Max Sensor Limit: " + str(login_MSL), ln = 2, align = 'C')
+            pdf.cell(200, 10,  txt = "Atrial Amplitude: " + str(login_AA) + "  Ventricular Amplitude: " + str(login_VA)  + "  Atrial Pulse Width: " + str(login_APW) + "  Ventricular Pulse Width: " + str(login_VPW), ln = 2, align = 'C')
+            pdf.cell(200, 10,  txt = "Atrial Sensitivity: " + str(login_AS) + "  Ventricular Sensitivity: " + str(login_VS)  + "  ARP: " + str(login_ARP) + "  VRP: " + str(login_VRP)+ "  PVARP: " + str(login_PVARP), ln = 2, align = 'C')
+            pdf.cell(200, 10,  txt = "Hysteresis: " + str(login_H) + "  Rate Smoothing: " + str(login_RS)  + "  Activity Threshold: " + str(login_AT), ln = 2, align = 'C')
+            pdf.cell(200, 10,  txt = "Reaction Time: " + str(login_RT) + "  Response Factor: " + str(login_RF)  + "  Recovery Time: " + str(login_recT) + "  Pacing Mode: " + str(login_M), ln = 2, align = 'C')
+
+
+            
 
             # save the pdf with name .pdf
-            pdf.output("bb2.pdf")  
+            pdf.output(login_name + " temporary report.pdf")  
         
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
