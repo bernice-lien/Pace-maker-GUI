@@ -101,7 +101,7 @@ class database():
                 reactionTime = account[19]
                 responseFactor = account[20]
                 recoveryTime = account[21]
-                Mode = account[22]
+                mode = account[22]
 
                 '''
                 username = account[0]
