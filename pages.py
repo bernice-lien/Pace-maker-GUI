@@ -4,6 +4,9 @@ from tkinter import *
 from tkinter import messagebox
 from database import *
 from modes import *
+import serial
+import serial.tools.list_ports
+import time
 
 db = database()
 mode = modes()
@@ -232,8 +235,6 @@ class pages():
         RFmessge = "Response Factor: " + str(login_RF)
         recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
-        
-        
 
 
 
@@ -353,7 +354,25 @@ class pages():
         profile_bottomframe.pack()
 
         #later will check whether pacemaker is connected before displaying error message
-        messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
+        initial = 0
+        def connect_check():
+            ports = serial.tools.list_ports.comports()
+            global com
+            for port, desc, hwid in sorted(ports):
+                print("{}: {} [{}]".format(port,desc,hwid))
+                if "JLink" in desc:
+                    com = port
+                    global initial
+                    initial = time.time_ns()
+                    return True
+                else:
+                    com = None
+            return False
+
+        if connect_check() == True:
+            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
+        elif connect_check() == False:
+            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
 
         #check if new pacemaker is different than previous pacemaker
         # if pacemaker != current_pacemaker:
