@@ -38,8 +38,10 @@ def data_gen():
 
             x_value += 1
             val = serialcomms.egramreceive()
-            vent_amp = val[4]*3.3 #will come from serial communication
-            atr_amp = val[3]*3.3
+            vent_amp = vent_amp + random.randint(-5, 6) #will come from serial communication
+            atr_amp = atr_amp+random.randint(-6, 8)
+            '''vent_amp = val[4]*3.3 #will come from serial communication
+            atr_amp = val[3]*3.3'''
 
         time.sleep(1)
 
@@ -75,4 +77,4 @@ def graph1():
 T = Thread(target = data_gen)
 T.setDaemon(True)
 T.start()
-graph1()
+#graph1()

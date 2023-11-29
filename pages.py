@@ -217,7 +217,7 @@ class pages():
             db.edit(str(login_id))
             page.open_profile()
 
-        ### BERNICE BERNICE I WAS HERE
+
         def temp_report():
             pdf = FPDF()
 
@@ -225,7 +225,6 @@ class pages():
             pdf.add_page()
 
             # set style and size of font 
-            # that you want in the pdf
             pdf.set_font("Arial", size = 10)
 
             # create a cell
@@ -253,8 +252,14 @@ class pages():
 
             # save the pdf with name .pdf
             
-            pdf.output('D', login_name + " temporary report.pdf")  
+            pdf.output(login_name + " temporary report.pdf")  
         
+        def egram_win():
+            window_e = tk.Tk()
+            window_e.title("Login")
+            window_e.geometry('500x400')
+            window_e.configure(bg='#4863A0')
+            
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
         LRLmessage = "Lower Rate Limit: " + str(login_LRL)
@@ -316,7 +321,7 @@ class pages():
     
         profile_edit = tk.Button(profile_frame, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
         temp_reportb = tk.Button(profile_frame, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
-        
+        egram_b = tk.Button(profile_frame, text = "Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = egram_win) 
         #pacing modes
         LRLmessage_title = tk.Label(profile_frame, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         URLmessage_title = tk.Label(profile_frame, text= URLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -364,7 +369,8 @@ class pages():
         tracing_message.grid(row=1, column=2, padx=25)
         profile_edit.grid(row=20, column = 0, pady=10)
         temp_reportb.grid(row=20, column=1, padx=10)
-        sign_out.grid(row=20, column=2, padx=10)
+        egram_b.grid(row=20, column=2, padx=10)
+        sign_out.grid(row=20, column=3, padx=10)
         
         aoo.grid(row=2, column=2)
         voo.grid(row=3, column=2)
