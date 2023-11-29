@@ -237,10 +237,30 @@ class pages():
         recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
 
+        initial = 0
+        def connect_check():
+            ports = serial.tools.list_ports.comports()
+            global com
+            for port, desc, hwid in sorted(ports):
+                print("{}: {} [{}]".format(port,desc,hwid))
+                if "JLink" in desc:
+                    com = port
+                    global initial
+                    initial = time.time_ns()
+                    return True
+                else:
+                    com = None
+            return False
 
+        if connect_check() == True:
+            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
+            con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+        elif connect_check() == False:
+            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
+            con_message = "Connection Status: Pacemaker not connected."
 
         #create info for corner of screen
-        connection_message = tk.Label(profile, text="Connection Status: Pacemaker not connected\nPacemaker version: 1\nDate of implant: 01/01/2023", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
         welcome_message = tk.Label(profile_topframe, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         tracing_message = tk.Label(profile_middleframe, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_bottomframe, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
@@ -324,61 +344,38 @@ class pages():
         profile_edit.grid(row=0, column = 0)
         sign_out.grid(row=1, column=0, pady=10)
         aoo.grid(row=2, column=2)
-        voo.grid(row=3, column=2, pady=10)
+        voo.grid(row=3, column=2)
         aai.grid(row=4, column=2)
-        vvi.grid(row=5, column=2, pady=10)
+        vvi.grid(row=5, column=2)
         aoor.grid(row=6, column=2) 
-        voor.grid(row=7, column=2, pady=10) 
+        voor.grid(row=7, column=2) 
         aair.grid(row=8, column=2) 
-        vvir.grid(row=9, column=2, pady=10) 
+        vvir.grid(row=9, column=2) 
 
         #fixing row spacing
-        profile_middleframe.grid_rowconfigure(6, minsize=35)
-        profile_middleframe.grid_rowconfigure(7, minsize=35)
-        profile_middleframe.grid_rowconfigure(8, minsize=35)
-        profile_middleframe.grid_rowconfigure(9, minsize=35)
-        profile_middleframe.grid_rowconfigure(10, minsize=35)
-        profile_middleframe.grid_rowconfigure(11, minsize=35) 
-        profile_middleframe.grid_rowconfigure(12, minsize=35) 
-        profile_middleframe.grid_rowconfigure(13, minsize=35) 
-        profile_middleframe.grid_rowconfigure(14, minsize=35) 
-        profile_middleframe.grid_rowconfigure(15, minsize=35) 
-        profile_middleframe.grid_rowconfigure(16, minsize=35) 
-        profile_middleframe.grid_rowconfigure(17, minsize=35) 
-        profile_middleframe.grid_rowconfigure(18, minsize=35) 
-        profile_middleframe.grid_rowconfigure(19, minsize=35) 
-        profile_middleframe.grid_rowconfigure(20, minsize=35) 
+        profile_middleframe.grid_rowconfigure(6, minsize=15)
+        profile_middleframe.grid_rowconfigure(7, minsize=15)
+        profile_middleframe.grid_rowconfigure(8, minsize=15)
+        profile_middleframe.grid_rowconfigure(9, minsize=15)
+        profile_middleframe.grid_rowconfigure(10, minsize=15)
+        profile_middleframe.grid_rowconfigure(11, minsize=15) 
+        profile_middleframe.grid_rowconfigure(12, minsize=15) 
+        profile_middleframe.grid_rowconfigure(13, minsize=15) 
+        profile_middleframe.grid_rowconfigure(14, minsize=15) 
+        profile_middleframe.grid_rowconfigure(15, minsize=15) 
+        profile_middleframe.grid_rowconfigure(16, minsize=15) 
+        profile_middleframe.grid_rowconfigure(17, minsize=15) 
+        profile_middleframe.grid_rowconfigure(18, minsize=15) 
+        profile_middleframe.grid_rowconfigure(19, minsize=15) 
+        profile_middleframe.grid_rowconfigure(20, minsize=15) 
         profile_middleframe.grid_rowconfigure(12, minsize=50)
         profile_middleframe.grid_columnconfigure(1, min = 150)
         profile_topframe.pack()
         profile_middleframe.pack()
         profile_bottomframe.pack()
 
-        #later will check whether pacemaker is connected before displaying error message
-        initial = 0
-        def connect_check():
-            ports = serial.tools.list_ports.comports()
-            global com
-            for port, desc, hwid in sorted(ports):
-                print("{}: {} [{}]".format(port,desc,hwid))
-                if "JLink" in desc:
-                    com = port
-                    global initial
-                    initial = time.time_ns()
-                    return True
-                else:
-                    com = None
-            return False
 
-        if connect_check() == True:
-            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
-        elif connect_check() == False:
-            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
-
-        #check if new pacemaker is different than previous pacemaker
-        # if pacemaker != current_pacemaker:
-        #     messagebox.showinfo(title="New Pacemaker",message="New pacemaker device has been approached.")
-
+        
         profile.mainloop()
 
     def admin_screen(self):
