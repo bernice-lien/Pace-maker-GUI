@@ -4,7 +4,6 @@ import pages
 import sqlite3
 from tkinter import messagebox
 import tkinter as tk
-from serialcomms import *
 
 '''
 0 username 
@@ -309,7 +308,7 @@ class database():
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 10ms.")
 
         #mode
-        modes = ["AOO", "AAI", "VOO", "VVI", "OFF","AOOR","VOOR","AAIR","VVIR"]
+        modes = ["AOO", "AAI", "VOO", "VVI", "OFF"]
         flag2 = False
         for mode in modes:
             if mode_edit.get() == mode:
@@ -320,40 +319,6 @@ class database():
             messagebox.showinfo(title="Invalid Mode",message="Enter one of the following modes: AOO, AAI, VOO, VVI, or OFF.")
 
         if flag == True:
-
-            numMode = 0
-            if (mode_edit.get() == "VOO"):
-                numMode = 1
-            elif (mode_edit.get() == "AAI"):
-                numMode = 2
-            elif (mode_edit.get() == "AOO"):
-                numMode = 3
-            elif (mode_edit.get() == "VVI"):
-                numMode = 4
-            elif (mode_edit.get() == "AOOR"):
-                numMode = 5
-            elif (mode_edit.get() == "VOOR"):
-                numMode = 6
-            elif (mode_edit.get() == "AAIR"):
-                numMode = 7
-            elif (mode_edit.get() == "VVIR"):
-                numMode = 8
-
-
-            sendserials(numMode,
-                        80,
-                        atrialAmplitude_edit.get(),
-                        ventricularAmplitude_edit.get(),
-                        atrialPulseWidth_edit.get(),
-                        ventricularPulseWidth_edit.get(),
-                        ARP_edit.get(),
-                        VRP_edit.get(),
-                        atrialSens_edit.get(),
-                        ventricularSens_edit.get(),
-                        responseFactor_edit.get(),
-                        lowerRateLimit_edit.get(),
-                        upperRateLimit_edit.get()
-                        )
             c.execute("""UPDATE login_info SET
                         username=:username,
                         password=:password,
@@ -444,10 +409,6 @@ class database():
         #query the database
         c.execute("SELECT * FROM login_info WHERE oid = " + record_id)
         records = c.fetchall() # list of lists for each row
-
-        #close connection
-        conn.commit()
-        conn.close() 
 
         #global variables for text box names (this is needed to pass the contents of the box to the update function)
         global username_edit 
@@ -666,6 +627,9 @@ class database():
 
         editor_frame.pack()
         editor.mainloop()
+        #close connection
+        conn.commit()
+        conn.close() 
 
     #delete function
     def delete(self,idNum):
