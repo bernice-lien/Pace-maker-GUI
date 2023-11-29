@@ -4,6 +4,8 @@ import pages
 import sqlite3
 from tkinter import messagebox
 import tkinter as tk
+import serial
+from serialcomms import *
 
 '''
 0 username 
@@ -177,8 +179,6 @@ class database():
         conn.close()
 
     def update(self,record_id):
-
-        #mode 
         #open connection
         conn = sqlite3.connect('login_list.db')
         c = conn.cursor()
@@ -198,7 +198,6 @@ class database():
             messagebox.showinfo(title="Invalid Name",message="Enter a valid first name.")
         if not(lastName_edit.get()):
             messagebox.showinfo(title="Invalid Name",message="Enter a valid last name.")
-
 
         if int(upperRateLimit_edit.get()) < int(lowerRateLimit_edit.get()):
             flag = False
@@ -226,10 +225,23 @@ class database():
         if (int(upperRateLimit_edit.get()) < 50) or (int(upperRateLimit_edit.get()) > 175): #check if upper rate limit is within range
             flag = False
             messagebox.showinfo(title="Invalid Upper Rate Limit",message="Upper rate limit must be between 50-175ppm.")
-        if (50 < int(upperRateLimit_edit.get()) < 175):
+        if 50 <= int(upperRateLimit_edit.get()) <= 175:
             if (int(upperRateLimit_edit.get()) % 5) != 0:
                 flag = False
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 5ppm.")
+            
+        """ #max sensor limit
+        if (mode_edit.get() == "AOO" or mode_edit.get() == "VOO" or mode_edit.get() == "AAI" or mode_edit.get() == "VVI"):
+            if (maxSensLimit_edit.get() != ):
+                messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Maximum senor rate must be zero for non-rate adaptive modes.")
+        if not(maxSensLimit_edit.get().isdigit()):
+            messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Maximum sensor rate must be a non-negative whole number.")
+        if (int(maxSensLimit_edit.get()) < 50) or (int(maxSensLimit_edit.get()) > 175): #out of range
+            flag = False
+        if 50 <= int(maxSensLimit_edit.get()) <= 175: #within range
+            if(int(maxSensLimit_edit.get()) % 5) != 0: #wrong step size
+                flag = False
+                messagebox.showinfo(title="Invalid Maximum Sensor Rate",message="Starting value must be incremented by 5ppm.") """
 
         #atrial amplitude
         if not((atrialAmplitude_edit.get())[0].isdigit()):
@@ -307,8 +319,16 @@ class database():
                 flag = False
                 messagebox.showinfo(title="Incrementation Error",message="Starting value must be incremented by 10ms.")
 
+        #PVARP
+        #hysteresis
+        #rate smoothing
+        #activity threshold
+        #reaction time
+        #response factor
+        #recovery time
+
         #mode
-        modes = ["AOO", "AAI", "VOO", "VVI", "OFF"]
+        modes = ["AOO", "AAI", "VOO", "VVI", "AOOR", "VOOR", "AAIR", "VVIR"]
         flag2 = False
         for mode in modes:
             if mode_edit.get() == mode:
@@ -316,9 +336,41 @@ class database():
         
         if flag2 == False:
             flag = False
-            messagebox.showinfo(title="Invalid Mode",message="Enter one of the following modes: AOO, AAI, VOO, VVI, or OFF.")
+            messagebox.showinfo(title="Invalid Mode",message="Enter one of the following modes: AOO, AAI, VOO, VVI, AOOR, VOOR, AAIR, or VVIR.")
 
         if flag == True:
+            numMode = 0
+            if (mode_edit.get() == "VOO"):
+                numMode = 1
+            elif (mode_edit.get() == "AAI"):
+                numMode = 2
+            elif (mode_edit.get() == "AOO"):
+                numMode = 3
+            elif (mode_edit.get() == "VVI"):
+                numMode = 4
+            elif (mode_edit.get() == "AOOR"):
+                numMode = 5
+            elif (mode_edit.get() == "VOOR"):
+                numMode = 6
+            elif (mode_edit.get() == "AAIR"):
+                numMode = 7
+            elif (mode_edit.get() == "VVIR"):
+                numMode = 8
+            '''sendserials(numMode,
+                        80,
+                        atrialAmplitude_edit.get(),
+                        ventricularAmplitude_edit.get(),
+                        atrialPulseWidth_edit.get(),
+                        ventricularPulseWidth_edit.get(),
+                        ARP_edit.get(),
+                        VRP_edit.get(),
+                        atrialSens_edit.get(),
+                        ventricularSens_edit.get(),
+                        responseFactor_edit.get(),
+                        lowerRateLimit_edit.get(),
+                        upperRateLimit_edit.get()
+                        )'''
+
             c.execute("""UPDATE login_info SET
                         username=:username,
                         password=:password,

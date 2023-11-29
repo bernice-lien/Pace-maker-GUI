@@ -258,7 +258,7 @@ class pages():
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
         LRLmessage = "Lower Rate Limit: " + str(login_LRL)
         URLmessage = "Upper Rate Limit: " + str(login_URL)
-        MSLmessage = "Maximum Sensor Limit: " + str(login_MSL)
+        MSLmessage = "Maximum Sensor Rate: " + str(login_MSL)
         AAmessage = "Atrial amplitude: " + str(login_AA)
         VAmessage = "Ventricular Amplitude: " + str(login_VA)
         APWmessage = "Atrial Pulse Width: " + str(login_APW)
