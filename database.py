@@ -18,7 +18,7 @@ import tkinter as tk
 9 atrialPulseWidth 
 10 ventricularPulseWidth 
 11 atrialSens 
-12 vetricularSens 
+12 ventricularSens 
 13 VRP 
 14 ARP 
 15 PVARP 
@@ -50,7 +50,7 @@ c.execute("""CREATE TABLE login_info(
             atrialPulseWidth real,
             ventricularPulseWidth real,
             atrialSens real,
-            vetricularSens real,
+            ventricularSens real,
             VRP integer,
             ARP integer,
             PVARP integer,
@@ -77,7 +77,33 @@ class database():
         accounts = self.query()
 
         for account in accounts:
-            if (account[13] == account_id):
+            if (account[23] == account_id):
+
+                username = account[0]
+                password = newPassword
+                firstName = account[2] 
+                lastName = account[3]
+                lowerRateLimit = account[4]
+                upperRateLimit = account[5]
+                maxSensLimit = account[6]
+                atrialAmplitude = account[7]
+                ventricularAmplitude = account[8]
+                atrialPulseWidth = account[9]
+                ventricularPulseWidth = account[10]
+                atrialSens = account[11]
+                ventricularSens = account[12]
+                VRP_ = account[13]
+                ARP_ = account[14]
+                PVARP_ = account[15]
+                hysteresis = account[16]
+                rateSmoothing = account[17]
+                activityThreshold = account[18]
+                reactionTime = account[19]
+                responseFactor = account[20]
+                recoveryTime = account[21]
+                Mode = account[22]
+
+                '''
                 username = account[0]
                 password = newPassword
                 firstName = account[2]
@@ -91,7 +117,7 @@ class database():
                 VRP_ = account[10]
                 ARP_ = account[11]
                 mode = account[12]
-
+                '''
         c.execute("""UPDATE login_info SET
                     username=:username,
                     password=:password,
@@ -99,30 +125,51 @@ class database():
                     lastName=:lastName,
                     lowerRateLimit=:lowerRateLimit,
                     upperRateLimit=:upperRateLimit,
+                    maxSensLimit=:maxSensLimit,
                     atrialAmplitude=:atrialAmplitude,
-                    atrialPulseWidth=:atrialPulseWidth,
                     ventricularAmplitude=:ventricularAmplitude,
+                    atrialPulseWidth=:atrialPulseWidth,
                     ventricularPulseWidth=:ventricularPulseWidth,
+                    atrialSens=:atrialSens,
+                    ventricularSens=:ventricularSens,
                     VRP=:VRP,
                     ARP=:ARP,
+                    PVARP=:PVARP,
+                    hysteresis=:hysteresis,
+                    rateSmoothing=:rateSmoothing,
+                    activityThreshold=:activityThreshold,
+                    reactionTime=:reactionTime,
+                    responseFactor=:responseFactor,
+                    recoveryTime=:recoveryTime,
                     mode=:mode
 
                     WHERE oid = :oid""",
 
-                {   'username':username,
-                    'password':newPassword,
+                {   
+                    'username':username,
+                    'password':password,
                     'firstName':firstName,
                     'lastName':lastName,
                     'lowerRateLimit':lowerRateLimit,
                     'upperRateLimit':upperRateLimit,
+                    'maxSensLimit':maxSensLimit,
                     'atrialAmplitude':atrialAmplitude,
-                    'atrialPulseWidth':atrialPulseWidth,
                     'ventricularAmplitude':ventricularAmplitude,
+                    'atrialPulseWidth':atrialPulseWidth,
                     'ventricularPulseWidth':ventricularPulseWidth,
+                    'atrialSens':atrialSens,
+                    'ventricularSens':ventricularSens,
                     'VRP':VRP_,
                     'ARP':ARP_,
+                    'PVARP':PVARP_,
+                    'hysteresis':hysteresis,
+                    'rateSmoothing':rateSmoothing,
+                    'activityThreshold':activityThreshold, 
+                    'reactionTime':reactionTime,
+                    'responseFactor':responseFactor,
+                    'recoveryTime':recoveryTime,
                     'mode':mode,
-                    'oid': account_id
+                    'oid':account_id
 
             })
         #close connection
@@ -279,30 +326,51 @@ class database():
                         lastName=:lastName,
                         lowerRateLimit=:lowerRateLimit,
                         upperRateLimit=:upperRateLimit,
+                        maxSensLimit=:maxSensLimit,
                         atrialAmplitude=:atrialAmplitude,
-                        atrialPulseWidth=:atrialPulseWidth,
                         ventricularAmplitude=:ventricularAmplitude,
+                        atrialPulseWidth=:atrialPulseWidth,
                         ventricularPulseWidth=:ventricularPulseWidth,
+                        atrialSens=:atrialSens,
+                        ventricularSens=:ventricularSens,
                         VRP=:VRP,
                         ARP=:ARP,
+                        PVARP=:PVARP,
+                        hysteresis=:hysteresis,
+                        rateSmoothing=:rateSmoothing,
+                        activityThreshold=:activityThreshold,
+                        reactionTime=:reactionTime,
+                        responseFactor=:responseFactor,
+                        recoveryTime=:recoveryTime,
                         mode=:mode
 
                         WHERE oid = :oid""",
 
-                    {   'username':username_edit.get(),
+                    {   
+                        'username':username_edit.get(),
                         'password':password_edit.get(),
                         'firstName':firstName_edit.get(),
                         'lastName':lastName_edit.get(),
                         'lowerRateLimit':lowerRateLimit_edit.get(),
                         'upperRateLimit':upperRateLimit_edit.get(),
+                        'maxSensLimit':maxSensLimit_edit.get(),
                         'atrialAmplitude':atrialAmplitude_edit.get(),
-                        'atrialPulseWidth':atrialPulseWidth_edit.get(),
                         'ventricularAmplitude':ventricularAmplitude_edit.get(),
+                        'atrialPulseWidth':atrialPulseWidth_edit.get(),
                         'ventricularPulseWidth':ventricularPulseWidth_edit.get(),
+                        'atrialSens':atrialSens_edit.get(),
+                        'ventricularSens':ventricularSens_edit.get(),
                         'VRP':VRP_edit.get(),
                         'ARP':ARP_edit.get(),
+                        'PVARP':PVARP_edit.get(),
+                        'hysteresis':hysteresis_edit.get(),
+                        'rateSmoothing':rateSmoothing_edit.get(),
+                        'activityThreshold':activityThreshold_edit.get(), 
+                        'reactionTime':reactionTime_edit.get(),
+                        'responseFactor':responseFactor_edit.get(),
+                        'recoveryTime':recoveryTime_edit.get(),
                         'mode':mode_edit.get(),
-                        'oid': record_id
+                        'oid':record_id
 
                     })
 
@@ -333,18 +401,28 @@ class database():
         records = c.fetchall() # list of lists for each row
 
         #global variables for text box names (this is needed to pass the contents of the box to the update function)
-        global username_edit
+        global username_edit 
         global password_edit
         global firstName_edit
         global lastName_edit
-        global lowerRateLimit_edit
-        global upperRateLimit_edit
-        global atrialAmplitude_edit
-        global atrialPulseWidth_edit
-        global ventricularAmplitude_edit
-        global ventricularPulseWidth_edit
-        global VRP_edit
-        global ARP_edit
+        global lowerRateLimit_edit 
+        global upperRateLimit_edit 
+        global maxSensLimit_edit 
+        global atrialAmplitude_edit 
+        global ventricularAmplitude_edit 
+        global atrialPulseWidth_edit 
+        global ventricularPulseWidth_edit 
+        global atrialSens_edit 
+        global ventricularSens_edit 
+        global VRP_edit 
+        global ARP_edit 
+        global PVARP_edit 
+        global hysteresis_edit 
+        global rateSmoothing_edit 
+        global activityThreshold_edit 
+        global reactionTime_edit 
+        global responseFactor_edit 
+        global recoveryTime_edit
         global mode_edit
 
         editor = Tk()
@@ -357,6 +435,57 @@ class database():
         edit_data_label = Label(editor_frame, text="Edit Profile",bg='#4863A0', fg='#FFFFFF', font=("Arial", 24))
 
         #input field
+        '''
+        username_edit 
+        password_edit
+        firstName_edit
+        lastName_edit
+        lowerRateLimit_edit 
+        upperRateLimit_edit 
+        maxSensLimit_edit 
+        atrialAmplitude_edit 
+        ventricularAmplitude_edit 
+        atrialPulseWidth_edit 
+        ventricularPulseWidth_edit 
+        atrialSens_edit 
+        ventricularSens_edit 
+        VRP_edit 
+        ARP_edit 
+        PVARP_edit 
+        hysteresis_edit 
+        rateSmoothing_edit 
+        activityThreshold_edit 
+        reactionTime_edit 
+        responseFactor_edit 
+        recoveryTime_edit
+        mode_edit
+        '''
+        username_edit = Entry(editor_frame, font=("Arial",12))
+        password_edit = Entry(editor_frame, font=("Arial", 12))
+        firstName_edit = Entry(editor_frame, font=("Arial", 12))
+        lastName_edit = Entry(editor_frame, font=("Arial", 12))
+        lowerRateLimit_edit = Spinbox(editor_frame, from_= 30, to= 175, increment = 5, font=("Arial", 12))
+        upperRateLimit_edit = Spinbox(editor_frame, from_= 50, to= 175, increment = 5, font=("Arial", 12))
+        maxSensLimit_edit = Spinbox(editor_frame, from_= 50, to= 175, increment = 5, font=("Arial", 12))
+        atrialAmplitude_edit = Spinbox(editor_frame, from_= 0.5, to= 7.0, increment = 0.1, font=("Arial", 12))
+        ventricularAmplitude_edit = Spinbox(editor_frame, from_= 0.5, to= 7.0, increment = 0.1, font=("Arial", 12))
+        atrialPulseWidth_edit = Spinbox(editor_frame, from_= 0.1, to= 1.9, increment = 0.1, font=("Arial", 12))
+        ventricularPulseWidth_edit = Spinbox(editor_frame, from_= 0.1, to= 1.9, increment = 0.1, font=("Arial", 12))
+        atrialSens_edit = Spinbox(editor_frame, from_= 0.25, to= 0.75, increment = 0.25, font=("Arial", 12))
+        ventricularSens_edit = Spinbox(editor_frame, from_= 1.0, to= 10.0, increment = 0.5, font=("Arial", 12))#new
+        VRP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
+        ARP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
+        PVARP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
+        hysteresis_edit = Spinbox(editor_frame, from_= 0, to= 175, increment = 1, font=("Arial", 12))
+        rateSmoothing_edit = Spinbox(editor_frame, from_= 0, to= 24, increment = 3, font=("Arial", 12))
+        activityThreshold_edit  = Entry(editor_frame, font=("Arial", 12))
+        reactionTime_edit = Spinbox(editor_frame, from_= 10, to= 50, increment = 10, font=("Arial", 12))#new
+        responseFactor_edit = Spinbox(editor_frame, from_= 1, to= 16, increment = 1, font=("Arial", 12))#new
+        recoveryTime_edit = Spinbox(editor_frame, from_= 2, to= 16, increment = 1, font=("Arial", 12))#new
+        mode_edit = Entry(editor_frame, font=("Arial", 12))
+
+
+        '''
         username_edit = Entry(editor_frame, font=("Arial",12))
         password_edit = Entry(editor_frame, font=("Arial", 12))
         firstName_edit = Entry(editor_frame, font=("Arial", 12))
@@ -370,8 +499,34 @@ class database():
         VRP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
         ARP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
         mode_edit = Entry(editor_frame, font=("Arial", 12))#this can be a drop down menu, if not we can keep it as a text input
-
+        '''
         #input labels
+
+        username_edit_label = Label(editor_frame, text = "Username", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        password_edit_label = Label(editor_frame, text = "Password", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        firstName_edit_label = Label(editor_frame, text = "First Name", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        lastName_edit_label = Label(editor_frame, text = "Last Name", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        lowerRateLimit_edit_label = Label(editor_frame, text = "Lower Rate Limit", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        upperRateLimit_edit_label = Label(editor_frame, text = "Upper Rate Limit", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        maxSensLimit_edit_label = Label(editor_frame, text = "Max Sensor Limit", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        atrialAmplitude_edit_label = Label(editor_frame, text = "Atrial Amplitude", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        ventricularAmplitude_edit_label = Label(editor_frame, text = "Ventricular Amplitude", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        atrialPulseWidth_edit_label = Label(editor_frame, text = "Atrial Pulse Width", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        ventricularPulseWidth_edit_label = Label(editor_frame, text = "Ventricular Pulse Width", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        atrialSens_edit_label = Label(editor_frame, text = "Atrial Sensitivity", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        ventricularSens_edit_label = Label(editor_frame, text = "Ventricular Sensitivity", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        VRP_edit_label = Label(editor_frame, text = "VRP", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        ARP_edit_label = Label(editor_frame, text = "ARP", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        PVARP_edit_label = Label(editor_frame, text = "PVARP", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        hysteresis_edit_label = Label(editor_frame, text = "Hysteresis", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        rateSmoothing_edit_label = Label(editor_frame, text = "Rate Smoothing", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        activityThreshold_edit_label = Label(editor_frame, text = "Activity Threshold", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        reactionTime_edit_label = Label(editor_frame, text = "Reaction Time", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        responseFactor_edit_label = Label(editor_frame, text = "Response Factor", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12)) 
+        recoveryTime_edit_label = Label(editor_frame, text = "Recovery Time", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        mode_edit_label = Label(editor_frame, text = "Mode", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+
+        '''
         username_edit_label = Label(editor_frame, text = "Username", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         password_edit_label = Label(editor_frame, text = "Password", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         firstName_edit_label = Label(editor_frame, text = "First Name", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -385,6 +540,7 @@ class database():
         VRP_edit_label = Label(editor_frame, text = "VRP", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         ARP_edit_label = Label(editor_frame, text = "ARP", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         mode_edit_label = Label(editor_frame, text = "Mode", bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        '''
 
         #save button
         save_btn = Button(editor_frame, text = "Save Changes", command= lambda: self.update(pages.login_id))
@@ -393,6 +549,30 @@ class database():
         edit_data_label.grid(row=0, column=0, columnspan=2, sticky="news", pady=10)
 
         #place input boxes
+        username_edit.grid(row=1,column = 1)
+        password_edit.grid(row=2,column = 1)
+        firstName_edit_label.grid(row=3,column = 1)
+        lastName_edit.grid(row=4,column = 1)
+        lowerRateLimit_edit.grid(row=5,column = 1)
+        upperRateLimit_edit.grid(row=6,column = 1)
+        maxSensLimit_edit.grid(row=7,column = 1)
+        atrialAmplitude_edit.grid(row=8,column = 1)
+        ventricularAmplitude_edit.grid(row=9,column = 1)
+        atrialPulseWidth_edit.grid(row=10,column = 1)
+        ventricularPulseWidth_edit.grid(row=11,column = 1)
+        atrialSens_edit.grid(row=12,column = 1)
+        ventricularSens_edit.grid(row=13,column = 1)
+        VRP_edit.grid(row=14,column = 1)
+        ARP_edit.grid(row=15,column = 1)
+        PVARP_edit.grid(row=16,column = 1)
+        hysteresis_edit.grid(row=17,column = 1)
+        rateSmoothing_edit.grid(row=18,column = 1)
+        activityThreshold_edit.grid(row=19,column = 1)
+        reactionTime_edit.grid(row=20,column = 1)
+        responseFactor_edit.grid(row=21,column = 1)
+        recoveryTime_edit.grid(row=22,column = 1)
+        mode_edit.grid(row=23,column = 1)
+        '''
         username_edit.grid(row=1, column = 1, padx=20, pady=10)
         password_edit.grid(row=2, column = 1)
         firstName_edit.grid(row=3, column = 1, pady=10)
@@ -406,8 +586,34 @@ class database():
         VRP_edit.grid(row=11, column = 1, pady=10)
         ARP_edit.grid(row=12, column = 1)
         mode_edit.grid(row=13, column = 1, pady=10)
-        
+        '''
         #place input labels
+
+        username_edit_label.grid(row=1,column = 0)
+        password_edit_label.grid(row=2,column = 0)
+        firstName_edit_label.grid(row=3,column = 0)
+        lastName_edit_label.grid(row=4,column = 0)
+        lowerRateLimit_edit_label.grid(row=5,column = 0)
+        upperRateLimit_edit_label.grid(row=6,column = 0)
+        maxSensLimit_edit_label.grid(row=7,column = 0)
+        atrialAmplitude_edit_label.grid(row=8,column = 0)
+        ventricularAmplitude_edit_label.grid(row=9,column = 0)
+        atrialPulseWidth_edit_label.grid(row=10,column = 0)
+        ventricularPulseWidth_edit_label.grid(row=11,column = 0)
+        atrialSens_edit_label.grid(row=12,column = 0)
+        ventricularSens_edit_label.grid(row=13,column = 0)
+        VRP_edit_label.grid(row=14,column = 0)
+        ARP_edit_label.grid(row=15,column = 0)
+        PVARP_edit_label.grid(row=16,column = 0)
+        hysteresis_edit_label.grid(row=17,column = 0)
+        rateSmoothing_edit_label.grid(row=18,column = 0)
+        activityThreshold_edit_label.grid(row=19,column = 0)
+        reactionTime_edit_label.grid(row=20,column = 0)
+        responseFactor_edit_label.grid(row=21,column = 0)
+        recoveryTime_edit_label.grid(row=22,column = 0)
+        mode_edit_label.grid(row=23,column = 0)
+
+        '''
         username_edit_label.grid(row=1,column = 0)
         password_edit_label.grid(row=2,column = 0)
         firstName_edit_label.grid(row=3,column = 0)
@@ -421,7 +627,7 @@ class database():
         VRP_edit_label.grid(row=11,column = 0)
         ARP_edit_label.grid(row=12,column = 0)
         mode_edit_label.grid(row=13,column = 0)
-
+        '''
         #place save button
         save_btn.grid(row=14, column = 0, columnspan=2, pady=10)
         back_btn.grid(row=15, column = 0, columnspan=2)
@@ -429,6 +635,50 @@ class database():
 
         #fill boxes with current info
         for record in records:
+            
+            username_edit.insert(0,record[0])
+            password_edit.insert(0,record[1])
+            firstName_edit.insert(0,record[2])
+            lastName_edit.insert(0,record[3])
+            lowerRateLimit_edit.delete(0,"end")
+            lowerRateLimit_edit.insert(0,record[4])
+            upperRateLimit_edit.delete(0,"end")
+            upperRateLimit_edit.insert(0,record[5])
+            maxSensLimit_edit.delete(0,"end")
+            maxSensLimit_edit.insert(0,record[6])
+            atrialAmplitude_edit.delete(0,"end")
+            atrialAmplitude_edit.insert(0,record[7])
+            ventricularAmplitude_edit.delete(0,"end")
+            ventricularAmplitude_edit.insert(0,record[8])
+            atrialPulseWidth_edit.delete(0,"end")
+            atrialPulseWidth_edit.insert(0,record[9])
+            ventricularPulseWidth_edit.delete(0,"end")
+            ventricularPulseWidth_edit.insert(0,record[10])
+            atrialSens_edit.delete(0,"end")
+            atrialSens_edit.insert(0,record[11])
+            ventricularSens_edit.delete(0,"end")
+            ventricularSens_edit.insert(0,record[12])
+            VRP_edit.delete(0,"end")
+            VRP_edit.insert(0,record[13])
+            ARP_edit.delete(0,"end")
+            ARP_edit.insert(0,record[14])
+            PVARP_edit.delete(0,"end")
+            PVARP_edit.insert(0,record[15])
+            hysteresis_edit.delete(0,"end")
+            hysteresis_edit.insert(0,record[16])
+            rateSmoothing_edit.delete(0,"end")
+            rateSmoothing_edit.insert(0,record[17])
+            activityThreshold_edit.delete(0,"end")
+            activityThreshold_edit.insert(0,record[18])
+            reactionTime_edit.delete(0,"end")
+            reactionTime_edit.insert(0,record[19])
+            responseFactor_edit.delete(0,"end")
+            responseFactor_edit.insert(0,record[20])
+            recoveryTime_edit.delete(0,"end")
+            recoveryTime_edit.insert(0,record[21])
+            mode_edit.insert(0,record[22])
+
+            '''
             username_edit.insert(0,record[0])
             password_edit.insert(0,record[1])
             firstName_edit.insert(0,record[2])
@@ -450,7 +700,7 @@ class database():
             ARP_edit.delete(0,"end")
             ARP_edit.insert(0,record[11])
             mode_edit.insert(0,record[12]) #the mode selected
-
+            '''
         editor_frame.pack()
         editor.mainloop()
         #close connection
