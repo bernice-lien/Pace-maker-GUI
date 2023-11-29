@@ -236,10 +236,15 @@ class pages():
         recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
 
-
+        if connect_check() == True:
+            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
+            con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+        elif connect_check() == False:
+            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
+            con_message = "Connection Status: Pacemaker not connected."
 
         #create info for corner of screen
-        connection_message = tk.Label(profile, text="Connection Status: Pacemaker not connected\nPacemaker version: 1\nDate of implant: 01/01/2023", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
         welcome_message = tk.Label(profile_topframe, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         tracing_message = tk.Label(profile_middleframe, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_bottomframe, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
@@ -368,11 +373,6 @@ class pages():
                 else:
                     com = None
             return False
-
-        if connect_check() == True:
-            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
-        elif connect_check() == False:
-            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
 
         #check if new pacemaker is different than previous pacemaker
         # if pacemaker != current_pacemaker:
