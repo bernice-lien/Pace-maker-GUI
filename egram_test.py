@@ -75,4 +75,4 @@ def graph1():
 T = Thread(target = data_gen)
 T.setDaemon(True)
 T.start()
-graph1()
+#graph1()
