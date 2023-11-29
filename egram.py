@@ -133,7 +133,7 @@ def window():
 
 def data_gen():
     x_value = 0
-    amplitude = 1.648
+    amplitude = 0
     pulse = 0
 
     fieldnames = ["x_value", "amplitude"]
@@ -156,8 +156,17 @@ def data_gen():
 
             x_value += 0.1
             val = serialcomms.egramreceive()
+            if (pulse == 9):
+                amplitude = 3.3
+            elif (pulse == 10):
+                amplitude = 0.1
+            else:
+                amplitude = val[3]*3.3
 
-            amplitude = val[3]*3.3
+            if (pulse == 10):
+                pulse = 0
+            else:
+                pulse += 1
 
 
         time.sleep(0.1)

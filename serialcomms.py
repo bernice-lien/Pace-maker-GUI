@@ -4,7 +4,7 @@ from time import sleep
 
 def sendserials(mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_Width, ARP, VRP, A_Sens, V_Sens, Response_Factor, LRL, URL):
     transmit = 1
-    rf = serial.Serial("COM6", baudrate=115200)
+    rf = serial.Serial("COM5", baudrate=115200)
     st = struct.Struct('<BBBffffHHffBBB')
     rf.open()
     serial_com = st.pack(transmit, mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_Width, ARP, VRP, A_Sens, V_Sens, Response_Factor, LRL, URL)
@@ -12,7 +12,7 @@ def sendserials(mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_W
     rf.close()
 
 def egramreceive():
-    rf = serial.Serial("COM6", baudrate=115200)
+    rf = serial.Serial("COM5", baudrate=115200)
 
     st = struct.Struct('<BBBffffHHffBBB')
 

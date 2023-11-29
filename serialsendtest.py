@@ -23,7 +23,7 @@ serial_com = st.pack(transmit, mode, Period, A_Amplitude, V_Amplitude, A_Pulse_W
 
 print(serial_com)
 print(len(serial_com))
-uC = serial.Serial("COM6", baudrate=115200)
+uC = serial.Serial("COM5", baudrate=115200)
 uC.write(serial_com)
     # unpacked = st.unpack(serial_com)
     # print(unpacked)
