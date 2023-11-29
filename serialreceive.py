@@ -2,7 +2,7 @@ import serial
 import struct
 from time import sleep
 
-rf = serial.Serial("COM6", baudrate=115200)
+rf = serial.Serial("COM5", baudrate=115200)
 
 st = struct.Struct('<BBBffffHHffBBB')
 

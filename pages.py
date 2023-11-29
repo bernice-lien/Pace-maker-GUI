@@ -4,6 +4,9 @@ from tkinter import *
 from tkinter import messagebox
 from database import *
 from modes import *
+import serial
+import serial.tools.list_ports
+import time
 
 db = database()
 mode = modes()
@@ -232,13 +235,31 @@ class pages():
         RFmessge = "Response Factor: " + str(login_RF)
         recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
-        
-        
 
+        initial = 0
+        def connect_check():
+            ports = serial.tools.list_ports.comports()
+            global com
+            for port, desc, hwid in sorted(ports):
+                print("{}: {} [{}]".format(port,desc,hwid))
+                if "JLink" in desc:
+                    com = port
+                    global initial
+                    initial = time.time_ns()
+                    return True
+                else:
+                    com = None
+            return False
 
+        if connect_check() == True:
+            messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
+            con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+        elif connect_check() == False:
+            messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
+            con_message = "Connection Status: Pacemaker not connected."
 
         #create info for corner of screen
-        connection_message = tk.Label(profile, text="Connection Status: Pacemaker not connected\nPacemaker version: 1\nDate of implant: 01/01/2023", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
         welcome_message = tk.Label(profile_topframe, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         tracing_message = tk.Label(profile_middleframe, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_bottomframe, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
@@ -352,13 +373,8 @@ class pages():
         profile_middleframe.pack()
         profile_bottomframe.pack()
 
-        #later will check whether pacemaker is connected before displaying error message
-        messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
 
-        #check if new pacemaker is different than previous pacemaker
-        # if pacemaker != current_pacemaker:
-        #     messagebox.showinfo(title="New Pacemaker",message="New pacemaker device has been approached.")
-
+        
         profile.mainloop()
 
     def admin_screen(self):
