@@ -7,7 +7,7 @@ from modes import *
 import serial
 import serial.tools.list_ports
 import time
-from fpdf import FPDF
+#from fpdf import FPDF
 
 db = database()
 mode = modes()
@@ -630,5 +630,30 @@ class pages():
 
         create_window.mainloop() #infinite loop that executes the app
 
+<<<<<<< HEAD
     
+=======
+"""     def report(self):      
+        # save FPDF() class into a 
+        # variable pdf
+        pdf = FPDF()
+        
+        # Add a page
+        pdf.add_page()
+        
+        # set style and size of font 
+        # that you want in the pdf
+        pdf.set_font("Arial", size = 15)
+        
+        # create a cell
+        pdf.cell(200, 10, txt = "Temporary Report", 
+                ln = 1, align = 'C')
+        
+        # add another cell
+        pdf.cell(200, 10, txt = "Patient" + login_name ,ln = 2, align = 'C')
+        
+        # save the pdf with name .pdf
+        pdf.output("GFG.pdf")  
+     """
+>>>>>>> 12359a03c4f907c65206941fa5e56657bd8efe19
 
