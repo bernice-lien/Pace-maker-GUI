@@ -236,6 +236,21 @@ class pages():
         recTmessage ="Recovery Time: " + str(login_recT)
         Mmessage = "Pacing Mode: " + str(login_M)
 
+        initial = 0
+        def connect_check():
+            ports = serial.tools.list_ports.comports()
+            global com
+            for port, desc, hwid in sorted(ports):
+                print("{}: {} [{}]".format(port,desc,hwid))
+                if "JLink" in desc:
+                    com = port
+                    global initial
+                    initial = time.time_ns()
+                    return True
+                else:
+                    com = None
+            return False
+
         if connect_check() == True:
             messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
             con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
@@ -358,26 +373,8 @@ class pages():
         profile_middleframe.pack()
         profile_bottomframe.pack()
 
-        #later will check whether pacemaker is connected before displaying error message
-        initial = 0
-        def connect_check():
-            ports = serial.tools.list_ports.comports()
-            global com
-            for port, desc, hwid in sorted(ports):
-                print("{}: {} [{}]".format(port,desc,hwid))
-                if "JLink" in desc:
-                    com = port
-                    global initial
-                    initial = time.time_ns()
-                    return True
-                else:
-                    com = None
-            return False
 
-        #check if new pacemaker is different than previous pacemaker
-        # if pacemaker != current_pacemaker:
-        #     messagebox.showinfo(title="New Pacemaker",message="New pacemaker device has been approached.")
-
+        
         profile.mainloop()
 
     def admin_screen(self):
