@@ -7,7 +7,29 @@ from modes import *
 
 db = database()
 mode = modes()
-
+'''
+global login_name
+global login_id
+global login_LRL
+global login_URL
+global login_MSL
+global login_AA
+global login_VA
+global login_APW
+global login_VPW
+global login_AS
+global login_VS 
+global login_VRP
+global login_ARP
+global login_PVARP 
+global login_H
+global login_RS 
+global login_AT 
+global login_RT 
+global login_RF 
+global login_recT
+global login_M
+'''
 class pages():
 
     global login_name
@@ -31,7 +53,7 @@ class pages():
     global login_RF 
     global login_recT
     global login_M
-
+    
     def welcome_screen(self):
 
         def open():
@@ -42,6 +64,29 @@ class pages():
                 open()
 
             def login():
+
+                global login_name
+                global login_id
+                global login_LRL
+                global login_URL
+                global login_MSL
+                global login_AA
+                global login_VA
+                global login_APW
+                global login_VPW
+                global login_AS
+                global login_VS 
+                global login_VRP
+                global login_ARP
+                global login_PVARP 
+                global login_H
+                global login_RS 
+                global login_AT 
+                global login_RT 
+                global login_RF 
+                global login_recT
+                global login_M
+
                 logins = db.query()
                 loginSuccessful = False
         
@@ -56,6 +101,29 @@ class pages():
 
                     elif username_entry.get()==login[0] and password_entry.get()==login[1]: #need to pull from database
                         login_name = login_name = login[2] + " " + login[3]
+                        login_id = login[23]
+                        login_LRL = login[4]
+                        login_URL = login[5]
+                        login_MSL = login[6]
+                        login_AA = login[7]
+                        login_VA = login[8]
+                        login_APW = login[9]
+                        login_VPW = login[10]
+                        login_AS = login[11]
+                        login_VS  = login[12]
+                        login_VRP = login[13]
+                        login_ARP = login[14]
+                        login_PVARP  = login[15]
+                        login_H = login[16]
+                        login_RS = login[17]
+                        login_AT = login[18]
+                        login_RT = login[19]
+                        login_RF = login[20]
+                        login_recT = login[21]
+                        login_M = login[22]
+
+
+                        '''
                         login_id = login[13]
                         login_LRL = login[4]
                         login_URL = login[5]
@@ -66,7 +134,7 @@ class pages():
                         login_VPW = login[9]
                         login_VRP = login[11]
                         login_M = login[12]
-
+                        '''
                         loginSuccessful = True
                         window.destroy()
                         self.open_profile()
@@ -107,9 +175,31 @@ class pages():
 
     def open_profile(self):
 
+        global login_name
+        global login_id
+        global login_LRL
+        global login_URL
+        global login_MSL
+        global login_AA
+        global login_VA
+        global login_APW
+        global login_VPW
+        global login_AS
+        global login_VS 
+        global login_VRP
+        global login_ARP
+        global login_PVARP 
+        global login_H
+        global login_RS 
+        global login_AT 
+        global login_RT 
+        global login_RF 
+        global login_recT
+        global login_M
+
         page = pages()
         profile = tk.Tk()
-        profile.geometry("600x650")
+        profile.geometry("600x1000")
         profile.configure(bg='#4863A0')
         profile.title("Profile Page")
         profile_topframe = tk.Frame(profile, bg='#4863A0')
@@ -164,6 +254,26 @@ class pages():
         profile_edit = tk.Button(profile_bottomframe, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
 
         #pacing modes
+        LRLmessage_title = tk.Label(profile_middleframe, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        URLmessage_title = tk.Label(profile_middleframe, text= URLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        MSLmessage_title = tk.Label(profile_middleframe, text= MSLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        AAmessage_title = tk.Label(profile_middleframe, text= AAmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        VAmessage_title = tk.Label(profile_middleframe, text= VAmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        APWmessage_title = tk.Label(profile_middleframe, text= APWmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        VPWmessage_title = tk.Label(profile_middleframe, text= VPWmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        ASmessage_title = tk.Label(profile_middleframe, text= ASmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        VSmessage_title = tk.Label(profile_middleframe, text= VSmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        ARPmessage_title = tk.Label(profile_middleframe, text= ARPmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        VRPmessage_title = tk.Label(profile_middleframe, text= VRPmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        PVARPmessage_title = tk.Label(profile_middleframe, text= PVARPmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        Hmessage_title = tk.Label(profile_middleframe, text= Hmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        RSmessage_title = tk.Label(profile_middleframe, text= RSmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        ATmessage_title = tk.Label(profile_middleframe, text= ATmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        RTmessage_title = tk.Label(profile_middleframe, text= RTmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        RFmessge_title = tk.Label(profile_middleframe, text= RFmessge, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        recTmessage_title = tk.Label(profile_middleframe, text= recTmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        Mmessage_title = tk.Label(profile_middleframe, text= Mmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+        '''
         pulseratelow_acc_title = tk.Label(profile_middleframe, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         pulseratehigh_acc_title = tk.Label(profile_middleframe, text= URLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         pulsewidth_arial_title = tk.Label(profile_middleframe, text= APWmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -173,8 +283,29 @@ class pages():
         VRP_acc_title = tk.Label(profile_middleframe, text= VRPmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         pacingmode_acc_title = tk.Label(profile_middleframe, text= Mmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         ARP_acc_title = tk.Label(profile_middleframe, text= ARPmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
-
+        '''
             #acc title alignment
+        LRLmessage_title.grid(row=2,column=0)
+        URLmessage_title.grid(row=3,column=0)
+        MSLmessage_title.grid(row=4,column=0)
+        AAmessage_title.grid(row=5,column=0)
+        VAmessage_title.grid(row=6,column=0)
+        APWmessage_title.grid(row=7,column=0)
+        VPWmessage_title.grid(row=8,column=0)
+        ASmessage_title.grid(row=9,column=0)
+        VSmessage_title.grid(row=10,column=0)
+        ARPmessage_title.grid(row=11,column=0)
+        VRPmessage_title.grid(row=12,column=0)
+        PVARPmessage_title.grid(row=13,column=0)
+        Hmessage_title.grid(row=14,column=0)
+        RSmessage_title.grid(row=15,column=0)
+        ATmessage_title.grid(row=16,column=0)
+        RTmessage_title.grid(row=17,column=0)
+        RFmessge_title.grid(row=18,column=0)
+        recTmessage_title.grid(row=19,column=0)
+        Mmessage_title.grid(row=20,column=0)
+
+        '''
         pulseratelow_acc_title.grid(row=2,column=0)
         pulseratehigh_acc_title.grid(row=3,column=0)
         pulsewidth_arial_title.grid(row=4,column=0)
@@ -184,7 +315,7 @@ class pages():
         VRP_acc_title.grid(row=8,column=0)
         pacingmode_acc_title.grid(row=10,column=0)
         ARP_acc_title.grid(row=9,column=0)
-        
+        '''
         connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 20)
         tracing_message.grid(row=1, column=2, pady=10)
@@ -206,6 +337,15 @@ class pages():
         profile_middleframe.grid_rowconfigure(9, minsize=35)
         profile_middleframe.grid_rowconfigure(10, minsize=35)
         profile_middleframe.grid_rowconfigure(11, minsize=35) 
+        profile_middleframe.grid_rowconfigure(12, minsize=35) 
+        profile_middleframe.grid_rowconfigure(13, minsize=35) 
+        profile_middleframe.grid_rowconfigure(14, minsize=35) 
+        profile_middleframe.grid_rowconfigure(15, minsize=35) 
+        profile_middleframe.grid_rowconfigure(16, minsize=35) 
+        profile_middleframe.grid_rowconfigure(17, minsize=35) 
+        profile_middleframe.grid_rowconfigure(18, minsize=35) 
+        profile_middleframe.grid_rowconfigure(19, minsize=35) 
+        profile_middleframe.grid_rowconfigure(20, minsize=35) 
         profile_middleframe.grid_rowconfigure(12, minsize=50)
         profile_middleframe.grid_columnconfigure(1, min = 150)
         profile_topframe.pack()
@@ -298,12 +438,22 @@ class pages():
             global login_id
             global login_LRL
             global login_URL
+            global login_MSL
             global login_AA
-            global login_APW
             global login_VA
-            global login_VPW 
+            global login_APW
+            global login_VPW
+            global login_AS
+            global login_VS 
             global login_VRP
             global login_ARP
+            global login_PVARP 
+            global login_H
+            global login_RS 
+            global login_AT 
+            global login_RT 
+            global login_RF 
+            global login_recT
             global login_M
             
             for login in logins:
@@ -317,16 +467,26 @@ class pages():
 
                 elif username_entry.get()==login[0] and password_entry.get()==login[1]: #need to pull from database
                     login_name = login_name = login[2] + " " + login[3]
-                    login_id = login[13]
+                    login_id = login[23]
                     login_LRL = login[4]
                     login_URL = login[5]
-                    login_AA = login[6]
-                    login_APW = login[7]
-                    login_ARP = login[10]
+                    login_MSL = login[6]
+                    login_AA = login[7]
                     login_VA = login[8]
-                    login_VPW = login[9]
-                    login_VRP = login[11]
-                    login_M = login[12]
+                    login_APW = login[9]
+                    login_VPW = login[10]
+                    login_AS = login[11]
+                    login_VS  = login[12]
+                    login_VRP = login[13]
+                    login_ARP = login[14]
+                    login_PVARP  = login[15]
+                    login_H = login[16]
+                    login_RS = login[17]
+                    login_AT = login[18]
+                    login_RT = login[19]
+                    login_RF = login[20]
+                    login_recT = login[21]
+                    login_M = login[22]
 
                     loginSuccessful = True
                     window.destroy()
