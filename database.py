@@ -55,7 +55,7 @@ c.execute("""CREATE TABLE login_info(
             ARP integer,
             PVARP integer,
             hysteresis integer,
-            rateSmoothing real,
+            rateSmoothing integer,
             activityThreshold text,
             reactionTime integer,
             responseFactor integer,
