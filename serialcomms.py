@@ -14,7 +14,6 @@ def sendserials(mode, Period, A_Amplitude, V_Amplitude, A_Pulse_Width, V_Pulse_W
 def egramreceive():
     rf = serial.Serial("COM6", baudrate=115200)
 
-
     st = struct.Struct('<BBBffffHHffBBB')
 
     transmit = 0
@@ -37,16 +36,16 @@ def egramreceive():
 
     rf.write(serial_com)
 
-    size = struct.calcsize('<Bffdd')
+    size = struct.calcsize('<Bffff')
     data = rf.read(size)
-    tup = struct.unpack('<Bffdd',data)
+    tup = struct.unpack('<Bffff',data)
     val = [tup[0],tup[1], tup[2],tup[3], tup[4]]
     rf.close()
     return val
 
-    
-transmit = 0
+
+""" transmit = 0
 while transmit < 400:
     out = egramreceive()
     print(out[4], out[3])
-    transmit +=1
+    transmit +=1 """
