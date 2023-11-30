@@ -1,24 +1,3 @@
-#################### Serial Part Start ####################
-
-import serial
-import struct
-from time import sleep
-
-rf = serial.Serial("COM5", baudrate=115200)
-
-size = struct.calcsize('<BBHHffffffff')
-data = rf.read(size)
-tup = struct.unpack('<BBHHffffffff',data)
-print(tup[0])
-print(tup[1])
-print(tup[2])
-print(tup[3])
-print(tup[4])
-rf.close()
-
-
-#################### Serial Part Ends ####################
-
 import random
 from itertools import count
 import pandas as pd
