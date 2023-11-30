@@ -211,10 +211,10 @@ class database():
             if (int(lowerRateLimit_edit.get()) % 5) != 0:
                 flag = False
                 messagebox.showinfo(title="Invalid Lower Rate Limit",message="Starting value must be incremented by 5ppm between 30-50ppm.")
-        '''if 50 <= int(lowerRateLimit_edit.get()) < 90: #check if correct incrementation for 50-90ppm
-            if not(isinstance(ventricularSens_edit.get(),int)):
+        if 50 <= int(lowerRateLimit_edit.get()) < 90: #check if correct incrementation for 50-90ppm
+            if not(isinstance(int(lowerRateLimit_edit.get()),int)):
                 flag = False
-                messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be a whole number.")'''
+                messagebox.showinfo(title="Invalid Lower Rate Limit",message="Lower rate limit must be a whole number.")
         if 90 <= int(lowerRateLimit_edit.get()) <= 175: #check if correct incrementation for 90-175ppm
             if (int(lowerRateLimit_edit.get()) % 5) != 0:
                 flag = False
@@ -275,7 +275,7 @@ class database():
             flag = False
             messagebox.showinfo(title="Invalid Atrial Pulse Width",message="Atrial pulse width must be between 1-30ms.")
         if (1 <= int(atrialPulseWidth_edit.get()) <= 30): #check if correct incrementation
-            if not(isinstance(atrialPulseWidth_edit.get(),int)):
+            if not(isinstance(int(atrialPulseWidth_edit.get()),int)):
                 flag = False
                 messagebox.showinfo(title="Invalid Atrial Pulse Width",message="Atrial pulse width must be a whole number.")
 
@@ -286,31 +286,31 @@ class database():
             flag = False
             messagebox.showinfo(title="Invalid Ventricular Pulse Width",message="Ventricular pulse width must be between 1-30ms.")
         if (1 <= int(ventricularPulseWidth_edit.get()) <= 30): #check if correct incrementation
-            if not(isinstance(ventricularPulseWidth_edit.get(),int)):
+            if not(isinstance(int(ventricularPulseWidth_edit.get()),int)):
                 flag = False
                 messagebox.showinfo(title="Invalid Ventricular Pulse Width",message="Ventricular pulse width must be a whole number.")
             
         #atrial sensitivity
         if not(atrialSens_edit.get()[0].isdigit()):
             messagebox.showinfo(title="Invalid Atrial Sensitivity",message="Atrial sensitivity must be a non-negative whole number.")
-        if ((int(atrialSens_edit.get()) < 0) or (int(atrialSens_edit.get()) > 5)): #check if atrial sensitivity width is within range
+        if ((float(atrialSens_edit.get()) < 0) or (float(atrialSens_edit.get()) > 5.0)): #check if atrial sensitivity width is within range
             flag = False
             messagebox.showinfo(title="Invalid Atrial Sensitivity",message="Atrial sensitivity must be between 0-5V.")
-        if (0 <= int(atrialSens_edit.get()) <= 5): #check if correct incrementation
-            if not(isinstance(atrialSens_edit.get(),int)):
+        if (0 <= float(atrialSens_edit.get()) <= 5.0): 
+            if (int(100*float(atrialSens_edit.get())) % 10) != 0:
                 flag = False
-                messagebox.showinfo(title="Invalid Atrial Sensitivity",message="Atrial sensitivity must be a whole number.")
+                messagebox.showinfo(title="Invalid Atrial Sensitivity",message="Starting value must be incremented by 0.1V.") 
 
         #ventricular sensitivity
         if not(ventricularSens_edit.get()[0].isdigit()):
             messagebox.showinfo(title="Invalid Ventricular Sensitivity",message="Ventricular sensitivity must be a non-negative whole number.")
-        if ((int(ventricularSens_edit.get()) < 0) or (int(ventricularSens_edit.get()) > 5)): #check if atrial sensitivity width is within range
+        if ((float(ventricularSens_edit.get()) < 0) or (float(ventricularSens_edit.get()) > 5)): #check if atrial sensitivity width is within range
             flag = False
             messagebox.showinfo(title="Invalid Ventricular Sensitivity",message="Ventricular sensitivity must be between 0-5V.")
-        if (0 <= int(ventricularSens_edit.get()) <= 5): #check if correct incrementation
-            if not(isinstance(ventricularSens_edit.get(),int)):
+        if (0 <= float(ventricularSens_edit.get()) <= 5.0): 
+            if (int(100*float(ventricularSens_edit.get())) % 10) != 0:
                 flag = False
-                messagebox.showinfo(title="Invalid Ventricular Sensitivity",message="Ventricular sensitivity must be a whole number.")
+                messagebox.showinfo(title="Invalid Ventricular Sensitivity",message="Starting value must be incremented by 0.1V.") 
         
         #VRP
         if not(VRP_edit.get().isdigit()): #make sure input is whole and non-negative
@@ -403,7 +403,7 @@ class database():
             flag = False
             messagebox.showinfo(title="Invalid Response Factor",message="Response factor must be between 1-16.")
         if 1 <= int(responseFactor_edit.get()) <= 16: #within range
-            if not(isinstance(responseFactor_edit.get(),int)):
+            if not(isinstance(int(responseFactor_edit.get()),int)):
                 flag = False
                 messagebox.showinfo(title="Invalid Response Factor",message="Response factor must be a whole number.")
 
@@ -414,7 +414,7 @@ class database():
             flag = False
             messagebox.showinfo(title="Invalid Recovery Time",message="Recovery time must be between 2-16min.")
         if 2 <= int(recoveryTime_edit.get()) <= 16: #within range
-            if not(isinstance(recoveryTime_edit.get(),int)):
+            if not(isinstance(int(recoveryTime_edit.get()),int)):
                 flag = False
                 messagebox.showinfo(title="Invalid Recovery Time",message="Recovery time must be a whole number.")
 
@@ -624,12 +624,12 @@ class database():
         lowerRateLimit_edit = Spinbox(editor_frame, from_= 30, to= 175, increment = 5, font=("Arial", 12))
         upperRateLimit_edit = Spinbox(editor_frame, from_= 50, to= 175, increment = 5, font=("Arial", 12))
         maxSensLimit_edit = Spinbox(editor_frame, from_= 50, to= 175, increment = 5, font=("Arial", 12))
-        atrialAmplitude_edit = Spinbox(editor_frame, from_= 0.5, to= 7.0, increment = 0.1, font=("Arial", 12))
-        ventricularAmplitude_edit = Spinbox(editor_frame, from_= 0.5, to= 7.0, increment = 0.1, font=("Arial", 12))
-        atrialPulseWidth_edit = Spinbox(editor_frame, from_= 0.1, to= 1.9, increment = 0.1, font=("Arial", 12))
-        ventricularPulseWidth_edit = Spinbox(editor_frame, from_= 0.1, to= 1.9, increment = 0.1, font=("Arial", 12))
-        atrialSens_edit = Spinbox(editor_frame, from_= 0.25, to= 0.75, increment = 0.25, font=("Arial", 12))
-        ventricularSens_edit = Spinbox(editor_frame, from_= 1.0, to= 10.0, increment = 0.5, font=("Arial", 12))
+        atrialAmplitude_edit = Spinbox(editor_frame, from_= 0.1, to= 5.0, increment = 0.1, font=("Arial", 12))
+        ventricularAmplitude_edit = Spinbox(editor_frame, from_= 0.1, to= 5.0, increment = 0.1, font=("Arial", 12))
+        atrialPulseWidth_edit = Spinbox(editor_frame, from_= 1, to= 30, increment = 1, font=("Arial", 12))
+        ventricularPulseWidth_edit = Spinbox(editor_frame, from_= 1, to= 30, increment = 1, font=("Arial", 12))
+        atrialSens_edit = Spinbox(editor_frame, from_= 0, to= 5.0, increment = 0.1, font=("Arial", 12))
+        ventricularSens_edit = Spinbox(editor_frame, from_= 0, to= 5.0, increment = 0.1, font=("Arial", 12))
         VRP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
         ARP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
         PVARP_edit = Spinbox(editor_frame, from_= 150, to= 500, increment = 10, font=("Arial", 12))
@@ -798,22 +798,22 @@ class database():
         lowerRateLimit = 60
         upperRateLimit = 120
         maxSensLimit = 120
-        atrialAmplitude = 3.5
-        ventricularAmplitude = 3.5
-        atrialPulseWidth = 0.4
-        ventricularPulseWidth = 0.4
-        atrialSens = 0.75
-        ventricularSens = 2.5
+        atrialAmplitude = 5.0
+        ventricularAmplitude = 5.0
+        atrialPulseWidth = 1
+        ventricularPulseWidth = 1
+        atrialSens = 0
+        ventricularSens = 0
         VRP = 320
         ARP = 250
         PVARP = 250
         hysteresis = 0
         rateSmoothing = 0
-        activityThreshold = "medium" 
+        activityThreshold = "Med" 
         reactionTime = 30
         responseFactor = 8
         recoveryTime = 5
-        mode = "OFF"
+        mode = "AOO"
 
         #insert into table
         c.execute("INSERT INTO login_info VALUES(:username,:password,:firstName,:lastName,:lowerRateLimit,:upperRateLimit,:maxSensLimit,:atrialAmplitude,:ventricularAmplitude,:atrialPulseWidth,:ventricularPulseWidth,:atrialSens,:ventricularSens,:VRP,:ARP,:PVARP,:hysteresis,:rateSmoothing,:activityThreshold,:reactionTime,:responseFactor,:recoveryTime,:mode)",
