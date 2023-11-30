@@ -204,6 +204,7 @@ class pages():
         global login_RF 
         global login_recT
         global login_M
+        global con_message
 
         page = pages()
         profile = tk.Tk()
@@ -368,6 +369,15 @@ class pages():
                     com = None
             return False
 
+        def button_connection_check():
+            connection_status = connect_check()
+            if connection_status:
+                messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
+                con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+            else:
+                messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
+                con_message = "Connection Status: Pacemaker not connected."
+
         if connect_check() == True:
             messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
             con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
@@ -397,6 +407,8 @@ class pages():
         temp_reportb = tk.Button(profile_frame, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
         egram_b = tk.Button(profile_frame, text = "Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = egram_win) 
         about_b = tk.Button(profile_frame, text = "About", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = open_about) 
+        check_connection = tk.Button(profile_frame, text = "Check Connection", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = button_connection_check)
+
 
         #pacing modes
         LRLmessage_title = tk.Label(profile_frame, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -450,7 +462,8 @@ class pages():
         temp_reportb.grid(row=5, column=1)
         profile_edit.grid(row=7, column=1)
         about_b.grid(row=9,column=1)
-        sign_out.grid(row=11, column=1)
+        check_connection.grid(row=11, column=1)
+        sign_out.grid(row=13, column=1)
         '''
         aoo.grid(row=2, column=2)
         voo.grid(row=3, column=2)
