@@ -36,7 +36,7 @@ def data_gen():
             csv_writer.writerow(info)
             print(x_value, vent_amp, atr_amp)
 
-            x_value += 1
+            x_value += 2
             val = serialcomms.egramreceive()
             vent_amp = val[4]*3.3 #will come from serial communication
             atr_amp = val[3]*3.3
@@ -51,25 +51,43 @@ x_vals = []
 y_vals = []
 
 index = count()
+signal_var = 1
+ani = None
+def graph1(signal_var):
 
-def graph1():
+    global ani  # Declare that we are using the global variable
+
+    # Stop the previous animation if it exists
+    if ani:
+        ani.event_source.stop()
     def animate(i):
         data = pd.read_csv('data.csv')
         x = data['x_value']
         y1 = data['vent_amp']
         y2 = data['atr_amp']
-
+        
         plt.cla()
+        if (signal_var == 1):
 
-        plt.plot(x,y1,color="red")
-        plt.plot(x,y2,color="blue")
-
+            plt.plot(x,y2,color="blue", label = 'Atrial')
+        
+        elif (signal_var== 2):
+            plt.plot(x,y1,color="red", label ='Ventricle')
+        
+        elif (signal_var == 3):
+            plt.plot(x,y2,color="blue", label = 'Atrium')
+            plt.plot(x,y1,color="red", label ='Ventricle')
+        
+        plt.legend(loc="upper left")
         plt.tight_layout()
 
     ani = FuncAnimation(plt.gcf(), animate, interval=100, cache_frame_data=False)
 
     plt.tight_layout()
     plt.show()
+
+def egram_pic():
+        plt.savefig('plot.png')
 
 #generate data
 T = Thread(target = data_gen)
