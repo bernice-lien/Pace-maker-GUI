@@ -54,7 +54,7 @@ index = count()
 signal_var = 1
 ani = None
 def graph1(signal_var):
-    time.sleep(3)
+
     global ani  # Declare that we are using the global variable
 
     # Stop the previous animation if it exists
@@ -85,6 +85,9 @@ def graph1(signal_var):
 
     plt.tight_layout()
     plt.show()
+
+def egram_pic():
+        plt.savefig('plot.png')
 
 #generate data
 T = Thread(target = data_gen)

@@ -255,18 +255,47 @@ class pages():
             
             pdf.output(login_name + " temporary report.pdf")  
 
+        def brad_report():
+            pdf = FPDF()
+            egram_test.egram_pic()
+
+            # Add a page
+            pdf.add_page()
+
+            # set style and size of font 
+            pdf.set_font("Arial", size = 10)
+
+            # create a cell
+            pdf.cell(200, 5, txt = "Brad Report", 
+                    ln = 1, align = 'L')
+
+            # add another cell
+            pdf.cell(200, 5, txt = "Patient: " + login_name, ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Institution: " + "McMaster University" ,ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Device Model: " + "12.0   Serial Number: 00395012" ,ln = 2, align = 'L')
+            pdf.cell(200, 5, txt = "Software Version: " + "6.1v   DCM Serial Number: 30194892" ,ln = 2, align = 'L')
+            now = datetime.now()
+ 
+            dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+            pdf.cell(200, 5, txt = "Date and Time: " + dt_string ,ln = 2, align = 'L')
+
+            pdf.cell(200, 30, txt = "" ,ln = 2, align = 'C')
+            
+            pdf.image('plot.png', x=10, y=pdf.get_y(), w=190)
+            pdf.output(login_name + " temporary electrogram.pdf")  
+
+
         def egram_win():
             window_e = tk.Tk()
             window_e.title("Egram")
             window_e.geometry('200x300')
             window_e.configure(bg='#4863A0')
-            AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command =lambda: egram_test.graph1(1))
-            VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(2))
-            BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(3))
-        
-            AS_b.grid(row=0,column=0)
-            VS_b.grid(row=1,column=0)
-            BS_b.grid(row=2,column=0)
+            AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command =lambda: egram_test.graph1(1)).pack()
+            VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(2)).pack()
+            BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(3)).pack()
+            egram_picb = tk.Button(window_e, text = "Pring Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=brad_report).pack()
+            
+
             #egram_test.graph1()
         
         def open_about():
