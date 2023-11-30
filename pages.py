@@ -207,7 +207,7 @@ class pages():
 
         page = pages()
         profile = tk.Tk()
-        profile.geometry("600x800")
+        profile.geometry("600x750")
         profile.configure(bg='#4863A0')
         profile.title("Profile Page")
 
@@ -270,7 +270,44 @@ class pages():
         
 
             egram_test.graph1()
-            print(signal_var)
+        
+        def open_about():
+
+            about_window = tk.Tk()
+            about_window.title("About")
+            about_window.geometry("300x400")
+            about_window.configure(bg='#4863A0')
+            about_window.title("About Page")
+
+            about_frame = tk.Frame(about_window, bg="#4863A0")
+            about_frame.pack()
+
+            #generate messages
+            time = datetime.now()
+            modelNumberMessage = "Model Number: 12.0"
+            softwareNumberMessage = "Software Version: 6.1v"
+            serialNumberMessage = "DCM Serial Number: 30194892"
+            institutionMessage = "Institution: McMaster University"
+            dateTimeString = "Date/Time: " + time.strftime("%d/%m/%Y %H:%M")
+
+            #generate labels
+            modelNumber_title = tk.Label(about_frame, text= modelNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
+            softwareNumber_title = tk.Label(about_frame, text=softwareNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",12))
+            serialNumber_title = tk.Label(about_frame, text=serialNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",12))
+            institution_title = tk.Label(about_frame, text=institutionMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",12))
+            dateTime_title = tk.Label(about_frame, text=dateTimeString, bg='#4863A0', fg='#FFFFFF', font=("Arial",12))
+
+            #place labels
+
+            modelNumber_title.grid(row=0,column=0)
+            softwareNumber_title.grid(row=1,column=0)
+            serialNumber_title.grid(row=2,column=0)
+            institution_title.grid(row=3,column=0)
+            dateTime_title.grid(row=4,column=0)
+            
+
+
+
 
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
@@ -322,6 +359,7 @@ class pages():
         welcome_message = tk.Label(profile_frame, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         tracing_message = tk.Label(profile_frame, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_frame, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
+        '''
         aoo = tk.Button(profile_frame, text = "AOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
         voo = tk.Button(profile_frame, text = "VOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOO)
         aai = tk.Button(profile_frame, text = "AAI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAI)
@@ -331,11 +369,13 @@ class pages():
         aair = tk.Button (profile_frame, text = "AAIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAIR)
         vvir = tk.Button (profile_frame, text = "VVIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVIR)
         dddr = tk.Button (profile_frame, text = "DDDR", bg ='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_DDDR)
-
+        '''
 
         profile_edit = tk.Button(profile_frame, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
         temp_reportb = tk.Button(profile_frame, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
         egram_b = tk.Button(profile_frame, text = "Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = egram_win) 
+        about_b = tk.Button(profile_frame, text = "About", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = open_about) 
+
         #pacing modes
         LRLmessage_title = tk.Label(profile_frame, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
         URLmessage_title = tk.Label(profile_frame, text= URLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -382,11 +422,14 @@ class pages():
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 10)
         
         tracing_message.grid(row=1, column=2, padx=25)
-        profile_edit.grid(row=20, column = 0, pady=10)
-        temp_reportb.grid(row=20, column=1, padx=10)
-        egram_b.grid(row=20, column=2, padx=10)
-        sign_out.grid(row=20, column=3, padx=10)
         
+        
+        egram_b.grid(row=2, column=2)
+        temp_reportb.grid(row=4, column=2)
+        profile_edit.grid(row=6, column = 2)
+        about_b.grid(row=8,column=2)
+        sign_out.grid(row=10, column=2)
+        '''
         aoo.grid(row=2, column=2)
         voo.grid(row=3, column=2)
         aai.grid(row=4, column=2)
@@ -396,6 +439,7 @@ class pages():
         aair.grid(row=8, column=2) 
         vvir.grid(row=9, column=2) 
         dddr.grid(row=10, column=2) 
+        '''
 
         profile_frame.pack()
         
@@ -651,4 +695,41 @@ class pages():
 
         create_window.mainloop() #infinite loop that executes the app
 
+    def about_win(self):
+            about_window = tk.Tk()
+            about_window.title("About")
+            about_window.geometry("300x400")
+            about_window.configure(bg='#4863A0')
 
+            about_frame = tk.Frame(about_window, bg='#4863A0')
+
+            #generate messages
+            time = datetime.now()
+            modelNumberMessage = "Model Number: 12.0"
+            softwareNumberMessage = "Software Version: 6.1v"
+            serialNumberMessage = "DCM Serial Number: 30194892"
+            institutionMessage = "Institution: McMaster University"
+            dateTimeString = "Date/Time: " + time.strftime("%d/%m/%Y %H:%M")
+
+            #generate labels
+            modelNumber_title = tk.Label(about_frame, text=modelNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+            softwareNumber_title = tk.Label(about_frame, text=softwareNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+            serialNumber_title = tk.Label(about_frame, text=serialNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+            institution_title = tk.Label(about_frame, text=institutionMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+            dateTime_title = tk.Label(about_frame, text=dateTimeString, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+
+            #place labels
+            '''
+            modelNumber_title.pack()
+            softwareNumber_title.pack()
+            serialNumber_title.pack()
+            institution_title.pack()
+            dateTime_title.pack()
+
+            '''
+            modelNumber_title.grid(row=0,column=0)
+            softwareNumber_title.grid(row=1,column=0)
+            serialNumber_title.grid(row=2,column=0)
+            institution_title.grid(row=3,column=0)
+            dateTime_title.grid(row=4,column=0)
+            

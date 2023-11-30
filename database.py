@@ -1,5 +1,5 @@
 from tkinter import *
-from pages import *
+#from pages import *
 import pages
 import sqlite3
 from tkinter import messagebox
