@@ -303,7 +303,7 @@ class pages():
 
             about_window = tk.Tk()
             about_window.title("About")
-            about_window.geometry("300x400")
+            about_window.geometry("300x200")
             about_window.configure(bg='#4863A0')
             about_window.title("About Page")
 
@@ -373,21 +373,21 @@ class pages():
             connection_status = connect_check()
             if connection_status:
                 messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
-                con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+                #con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
             else:
                 messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
-                con_message = "Connection Status: Pacemaker not connected."
+                #con_message = "Connection Status: Pacemaker not connected."
 
         if connect_check() == True:
             messagebox.showinfo(title="Connection Success",message="Pacemaker connected.")
-            con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
+            #con_message = "Connection Status: Pacemaker connected\nPacemaker version: 1\nDate of implant: 01/01/2023"
         elif connect_check() == False:
             messagebox.showinfo(title="Connection Error",message="Pacemaker is not connected.")
-            con_message = "Connection Status: Pacemaker not connected."
+            #con_message = "Connection Status: Pacemaker not connected."
 
 
         #create info for corner of screen
-        connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        #connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
         welcome_message = tk.Label(profile_frame, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         options_message = tk.Label(profile_frame, text = "Options", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_frame, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
@@ -452,7 +452,7 @@ class pages():
         recTmessage_title.grid(row=18,column=0)
         Mmessage_title.grid(row=19,column=0)
 
-        connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
+        #connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 10)
         
         options_message.grid(row=1, column=1, padx=50)

@@ -589,7 +589,7 @@ class database():
 
         editor_frame = tk.Frame(editor, bg='#4863A0')
 
-        edit_data_label = Label(editor_frame, text="Edit Profile",bg='#4863A0', fg='#FFFFFF', font=("Arial", 24))
+        edit_data_label = Label(editor_frame, text="Edit Profile",bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
 
         '''
         username_edit 
@@ -671,7 +671,7 @@ class database():
         back_btn = Button(editor_frame, text = "Back", command= editor.destroy)
 
         #page title
-        edit_data_label.grid(row=0, column=0, columnspan=2, sticky="news", pady=10)
+        edit_data_label.grid(row=0, column=0, columnspan=2, sticky="news", pady=5)
 
         #place input boxes
         username_edit.grid(row=1,column=1,padx=20,pady=5)
@@ -724,8 +724,8 @@ class database():
         mode_edit_label.grid(row=23,column=0)
 
         #place save button
-        save_btn.grid(row=24, column = 0, columnspan=2, pady=5)
-        back_btn.grid(row=25, column = 0, columnspan=2)
+        save_btn.grid(row=24, column = 0, pady=5)
+        back_btn.grid(row=24, column = 1)
 
         #fill boxes with current info
         for record in records:
