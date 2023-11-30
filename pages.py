@@ -254,18 +254,23 @@ class pages():
             # save the pdf with name .pdf
             
             pdf.output(login_name + " temporary report.pdf")  
-        
+            signal_var = 1
+        def make_something(value):
+            global signal_var
+            signal_var = value
         def egram_win():
             window_e = tk.Tk()
-            window_e.title("Login")
-            window_e.geometry('200x100')
+            window_e.title("Egram")
+            window_e.geometry('200x300')
             window_e.configure(bg='#4863A0')
-            mode_message = tk.Label(window_e, text="Red Line: Ventricular Signal\nBlue Line: Atrial Signal", bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
-            AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
-            VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
-            BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
-            mode_message.grid(row=0, column=0)
+            mode_message = tk.Label(window_e, text="Red Line: Ventricular Signal\nBlue Line: Atrial Signal", bg='#4863A0', fg='#FFFFFF', font=("Arial",8)).pack()
+            AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda *args: make_something(1)).pack()
+            VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda *args: make_something(2)).pack()
+            BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda *args: make_something(3)).pack()
+        
+
             egram_test.graph1()
+            print(signal_var)
 
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
