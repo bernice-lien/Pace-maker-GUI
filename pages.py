@@ -208,7 +208,7 @@ class pages():
 
         page = pages()
         profile = tk.Tk()
-        profile.geometry("600x675")
+        profile.geometry("600x600")
         profile.configure(bg='#4863A0')
         profile.title("Profile Page")
 
@@ -441,15 +441,15 @@ class pages():
         VPWmessage_title.grid(row=7,column=0)
         ASmessage_title.grid(row=8,column=0)
         VSmessage_title.grid(row=9,column=0)
-        ARPmessage_title.grid(row=10,column=0, pady=5)
+        ARPmessage_title.grid(row=10,column=0) #pady=5
         VRPmessage_title.grid(row=11,column=0)
-        PVARPmessage_title.grid(row=12,column=0, pady=5)
+        PVARPmessage_title.grid(row=12,column=0)
         Hmessage_title.grid(row=13,column=0)
-        RSmessage_title.grid(row=14,column=0, pady=5)
+        RSmessage_title.grid(row=14,column=0)
         ATmessage_title.grid(row=15,column=0)
-        RTmessage_title.grid(row=16,column=0, pady=5)
+        RTmessage_title.grid(row=16,column=0)
         RFmessge_title.grid(row=17,column=0)
-        recTmessage_title.grid(row=18,column=0, pady=5)
+        recTmessage_title.grid(row=18,column=0)
         Mmessage_title.grid(row=19,column=0)
 
         connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
