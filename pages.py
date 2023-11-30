@@ -490,7 +490,7 @@ class pages():
         records = db.query()
         for record in records:
             if(record[0] == "admin"):
-                admin_id = record[13]
+                admin_id = record[23]
         
         #print records
         def show_users():
@@ -500,7 +500,7 @@ class pages():
                 if record[0] == "admin":
                     pass
                 else:
-                    print_records+= str(record[0])+", "+str(record[13])+"\n"
+                    print_records+= str(record[0])+", "+str(record[23])+"\n"
 
             query_label = Label(admin_frame, text = print_records, bg='#4863A0', fg='#FFFFFF')
             query_label.grid(row=4, column=0, columnspan = 2)
