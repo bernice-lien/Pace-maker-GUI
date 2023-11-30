@@ -75,7 +75,7 @@ def graph1(signal_var):
             plt.plot(x,y1,color="red", label ='Ventricle')
         
         elif (signal_var == 3):
-            plt.plot(x,y2,color="blue", label = 'Atrial')
+            plt.plot(x,y2,color="blue", label = 'Atrium')
             plt.plot(x,y1,color="red", label ='Ventricle')
         
         plt.legend(loc="upper left")

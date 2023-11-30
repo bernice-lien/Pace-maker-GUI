@@ -207,7 +207,7 @@ class pages():
 
         page = pages()
         profile = tk.Tk()
-        profile.geometry("600x750")
+        profile.geometry("600x675")
         profile.configure(bg='#4863A0')
         profile.title("Profile Page")
 
@@ -288,12 +288,12 @@ class pages():
         def egram_win():
             window_e = tk.Tk()
             window_e.title("Egram")
-            window_e.geometry('200x300')
+            window_e.geometry('250x175')
             window_e.configure(bg='#4863A0')
             AS_b = tk.Button(window_e, text = "Atrial Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command =lambda: egram_test.graph1(1)).pack()
             VS_b = tk.Button(window_e, text = "Ventricular Signal", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(2)).pack()
             BS_b = tk.Button(window_e, text = "Both Signals", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=lambda:egram_test.graph1(3)).pack()
-            egram_picb = tk.Button(window_e, text = "Pring Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=brad_report).pack()
+            egram_picb = tk.Button(window_e, text = "Print Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command=brad_report).pack()
             
 
             #egram_test.graph1()
@@ -331,11 +331,6 @@ class pages():
             serialNumber_title.grid(row=2,column=0)
             institution_title.grid(row=3,column=0)
             dateTime_title.grid(row=4,column=0)
-            
-
-
-
-
             
         message = "Welcome," + " " + login_name #matches username entered to name stored in database
         LRLmessage = "Lower Rate Limit: " + str(login_LRL)
@@ -384,7 +379,7 @@ class pages():
         #create info for corner of screen
         connection_message = tk.Label(profile, text=con_message, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
         welcome_message = tk.Label(profile_frame, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
-        tracing_message = tk.Label(profile_frame, text = "Tracing Methods", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
+        options_message = tk.Label(profile_frame, text = "Options", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_frame, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
         '''
         aoo = tk.Button(profile_frame, text = "AOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
@@ -425,7 +420,7 @@ class pages():
         Mmessage_title = tk.Label(profile_frame, text= Mmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
        
         #title alignment
-        LRLmessage_title.grid(row=1,column=0)
+        LRLmessage_title.grid(row=1,column=0, padx=50)
         URLmessage_title.grid(row=2,column=0)
         MSLmessage_title.grid(row=3,column=0)
         AAmessage_title.grid(row=4,column=0)
@@ -448,14 +443,14 @@ class pages():
         connection_message.place(rely=1.0, relx=1.0, x=0, y=0, anchor=tk.SE)
         welcome_message.grid(row=0, column=0, columnspan=6, sticky="news", pady = 10)
         
-        tracing_message.grid(row=1, column=2, padx=25)
+        options_message.grid(row=1, column=1, padx=50)
         
         
-        egram_b.grid(row=2, column=2)
-        temp_reportb.grid(row=4, column=2)
-        profile_edit.grid(row=6, column = 2)
-        about_b.grid(row=8,column=2)
-        sign_out.grid(row=10, column=2)
+        egram_b.grid(row=3, column=1)
+        temp_reportb.grid(row=5, column=1)
+        profile_edit.grid(row=7, column=1)
+        about_b.grid(row=9,column=1)
+        sign_out.grid(row=11, column=1)
         '''
         aoo.grid(row=2, column=2)
         voo.grid(row=3, column=2)
