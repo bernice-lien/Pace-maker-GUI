@@ -1,15 +1,11 @@
-import random
 from itertools import count
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 from tkinter import *
 import csv
-import random
 import time
 from threading import *
-import multiprocessing
-from multiprocessing import Process
 import serialcomms
 
 def data_gen():
@@ -42,8 +38,6 @@ def data_gen():
             atr_amp = val[3]*3.3
 
         time.sleep(1)
-
-
 
 plt.style.use('fivethirtyeight')
 

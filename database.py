@@ -391,8 +391,8 @@ class database():
         if (int(reactionTime_edit.get()) < 10) or (int(reactionTime_edit.get()) > 50): #out of range
             flag = False
             messagebox.showinfo(title="Invalid Reaction Time",message="Reaction time must be between 10-50sec.")
-        if 10 <= int(PVARP_edit.get()) <= 50: #within range
-            if(int(PVARP_edit.get()) % 10) != 0: #wrong step size
+        if 10 <= int(reactionTime_edit.get()) <= 50: #within range
+            if(int(reactionTime_edit.get()) % 10) != 0: #wrong step size
                 flag = False
                 messagebox.showinfo(title="Invalid Reaction Time",message="Starting value must be incremented by 10sec.")
         

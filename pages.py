@@ -3,7 +3,6 @@ import database
 from tkinter import *
 from tkinter import messagebox
 from database import *
-from modes import *
 import serial
 import egram_test
 import serial.tools.list_ports
@@ -12,30 +11,7 @@ from fpdf import FPDF
 from datetime import datetime
 
 db = database()
-mode = modes()
-'''
-global login_name
-global login_id
-global login_LRL
-global login_URL
-global login_MSL
-global login_AA
-global login_VA
-global login_APW
-global login_VPW
-global login_AS
-global login_VS 
-global login_VRP
-global login_ARP
-global login_PVARP 
-global login_H
-global login_RS 
-global login_AT 
-global login_RT 
-global login_RF 
-global login_recT
-global login_M
-'''
+
 class pages():
 
     global login_name
@@ -59,8 +35,6 @@ class pages():
     global login_RF 
     global login_recT
     global login_M
-    
-
 
     def welcome_screen(self):
 
@@ -130,19 +104,6 @@ class pages():
                         login_recT = login[21]
                         login_M = login[22]
 
-
-                        '''
-                        login_id = login[13]
-                        login_LRL = login[4]
-                        login_URL = login[5]
-                        login_AA = login[6]
-                        login_APW = login[7]
-                        login_ARP = login[10]
-                        login_VA = login[8]
-                        login_VPW = login[9]
-                        login_VRP = login[11]
-                        login_M = login[12]
-                        '''
                         loginSuccessful = True
                         window.destroy()
                         self.open_profile()
@@ -391,24 +352,12 @@ class pages():
         welcome_message = tk.Label(profile_frame, text = message, bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         options_message = tk.Label(profile_frame, text = "Options", bg='#4863A0', fg='#FFFFFF', font=("Arial", 16))
         sign_out = tk.Button(profile_frame, text = "Sign Out", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = profile.destroy)
-        '''
-        aoo = tk.Button(profile_frame, text = "AOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOO)
-        voo = tk.Button(profile_frame, text = "VOO", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOO)
-        aai = tk.Button(profile_frame, text = "AAI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAI)
-        vvi = tk.Button(profile_frame, text = "VVI", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVI)
-        aoor = tk.Button(profile_frame, text = "AOOR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AOOR)
-        voor = tk.Button (profile_frame, text = "VOOR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VOOR)
-        aair = tk.Button (profile_frame, text = "AAIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_AAIR)
-        vvir = tk.Button (profile_frame, text = "VVIR", bg='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_VVIR)
-        dddr = tk.Button (profile_frame, text = "DDDR", bg ='#FFFFFF', fg='#000000', font=("Arial", 12), command = mode.open_DDDR)
-        '''
 
         profile_edit = tk.Button(profile_frame, text = "Edit Profile", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = reopen)
         temp_reportb = tk.Button(profile_frame, text = "Reports", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = temp_report)
         egram_b = tk.Button(profile_frame, text = "Egram", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = egram_win) 
         about_b = tk.Button(profile_frame, text = "About", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = open_about) 
         check_connection = tk.Button(profile_frame, text = "Check Connection", bg='#FFFFFF', fg='#000000', font=("Arial", 10), command = button_connection_check)
-
 
         #pacing modes
         LRLmessage_title = tk.Label(profile_frame, text= LRLmessage, bg='#4863A0', fg='#FFFFFF', font=("Arial", 12))
@@ -457,24 +406,12 @@ class pages():
         
         options_message.grid(row=1, column=1, padx=50)
         
-        
         egram_b.grid(row=3, column=1)
         temp_reportb.grid(row=5, column=1)
         profile_edit.grid(row=7, column=1)
         about_b.grid(row=9,column=1)
         check_connection.grid(row=11, column=1)
         sign_out.grid(row=13, column=1)
-        '''
-        aoo.grid(row=2, column=2)
-        voo.grid(row=3, column=2)
-        aai.grid(row=4, column=2)
-        vvi.grid(row=5, column=2)
-        aoor.grid(row=6, column=2) 
-        voor.grid(row=7, column=2) 
-        aair.grid(row=8, column=2) 
-        vvir.grid(row=9, column=2) 
-        dddr.grid(row=10, column=2) 
-        '''
 
         profile_frame.pack()
         
@@ -731,40 +668,32 @@ class pages():
         create_window.mainloop() #infinite loop that executes the app
 
     def about_win(self):
-            about_window = tk.Tk()
-            about_window.title("About")
-            about_window.geometry("300x400")
-            about_window.configure(bg='#4863A0')
+        about_window = tk.Tk()
+        about_window.title("About")
+        about_window.geometry("300x400")
+        about_window.configure(bg='#4863A0')
 
-            about_frame = tk.Frame(about_window, bg='#4863A0')
+        about_frame = tk.Frame(about_window, bg='#4863A0')
 
-            #generate messages
-            time = datetime.now()
-            modelNumberMessage = "Model Number: 12.0"
-            softwareNumberMessage = "Software Version: 6.1v"
-            serialNumberMessage = "DCM Serial Number: 30194892"
-            institutionMessage = "Institution: McMaster University"
-            dateTimeString = "Date/Time: " + time.strftime("%d/%m/%Y %H:%M")
+        #generate messages
+        time = datetime.now()
+        modelNumberMessage = "Model Number: 12.0"
+        softwareNumberMessage = "Software Version: 6.1v"
+        serialNumberMessage = "DCM Serial Number: 30194892"
+        institutionMessage = "Institution: McMaster University"
+        dateTimeString = "Date/Time: " + time.strftime("%d/%m/%Y %H:%M")
 
-            #generate labels
-            modelNumber_title = tk.Label(about_frame, text=modelNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
-            softwareNumber_title = tk.Label(about_frame, text=softwareNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
-            serialNumber_title = tk.Label(about_frame, text=serialNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
-            institution_title = tk.Label(about_frame, text=institutionMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
-            dateTime_title = tk.Label(about_frame, text=dateTimeString, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        #generate labels
+        modelNumber_title = tk.Label(about_frame, text=modelNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        softwareNumber_title = tk.Label(about_frame, text=softwareNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        serialNumber_title = tk.Label(about_frame, text=serialNumberMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        institution_title = tk.Label(about_frame, text=institutionMessage, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
+        dateTime_title = tk.Label(about_frame, text=dateTimeString, bg='#4863A0', fg='#FFFFFF', font=("Arial",8))
 
-            #place labels
-            '''
-            modelNumber_title.pack()
-            softwareNumber_title.pack()
-            serialNumber_title.pack()
-            institution_title.pack()
-            dateTime_title.pack()
-
-            '''
-            modelNumber_title.grid(row=0,column=0)
-            softwareNumber_title.grid(row=1,column=0)
-            serialNumber_title.grid(row=2,column=0)
-            institution_title.grid(row=3,column=0)
-            dateTime_title.grid(row=4,column=0)
+        #place labels
+        modelNumber_title.grid(row=0,column=0)
+        softwareNumber_title.grid(row=1,column=0)
+        serialNumber_title.grid(row=2,column=0)
+        institution_title.grid(row=3,column=0)
+        dateTime_title.grid(row=4,column=0)
             
