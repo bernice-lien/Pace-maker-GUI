@@ -1,0 +1,44 @@
+group5_A2finalmodel.o: \
+ C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/group5_A2finalmodel.c \
+ C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/group5_A2finalmodel.h \
+ C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rtwtypes.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_AnalogIn.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_I2C.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h \
+ C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/group5_A2finalmodel_types.h \
+ C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h \
+ C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/transmit.h \
+ C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rt_roundd_snf.h \
+ C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rtwtypes.h \
+ C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/transmit_private.h
+
+C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/group5_A2finalmodel.h:
+
+C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rtwtypes.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_AnalogIn.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SCI.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_digitalIO.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_I2C.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_PWM.h:
+
+C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/group5_A2finalmodel_types.h:
+
+C:/ProgramData/MATLAB/SupportPackages/R2023a/toolbox/target/supportpackages/freedomk64f/include/MW_SVD.h:
+
+C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/transmit.h:
+
+C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rt_roundd_snf.h:
+
+C:/Users/berni/OneDrive/Documents/New\ folder/code_group5/slprj/ert/_sharedutils/rtwtypes.h:
+
+C:/Users/berni/OneDrive/DOCUME~1/NEWFOL~1/CODE_G~1/group5_A2finalmodel_ert_rtw/transmit_private.h:

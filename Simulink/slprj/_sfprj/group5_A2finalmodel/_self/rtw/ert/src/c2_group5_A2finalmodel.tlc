@@ -1,0 +1,172 @@
+%implements "chartSource" "C"
+%function ChartConfig(block, system) void
+  %createrecord chartConfiguration { ...
+          executeAtInitialization  0 ...
+  }
+  %return chartConfiguration
+%endfunction
+%function ChartDataMap(block, system) void
+  %createrecord ChartDataElements {\
+    NumChartData   22 \
+    ChartDataDefaults {\
+      RecordType   "ChartData"\
+      Dimensions   []\
+      IsTestPoint  0\
+    }\
+    ChartData {\
+      Name         "Hys"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Hys"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Set_VRP"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Set_VRP"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Set_ARP"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Set_ARP"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "copy_Period"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "copy_Period"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Hys_on"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Hys_on"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "Hys_delay"\
+      Description  "ChartLocal"\
+      SFName       ""\
+      Path         "Hys_delay"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_active_c2_group5_A2finalmodel"\
+      Description  "StateIsActive"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_c2_group5_A2finalmodel"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_AAI"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AAI"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_AAIR"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AAIR"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_rate_adjust"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AAIR.rate_adjust"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_rate_adjust1"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AAIR.rate_adjust1"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_rate_adjust2"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AAIR.rate_adjust2"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_AOO"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AOO"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_AOOR"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "AOOR"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_VOO"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VOO"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_VOOR"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VOOR"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_VVI"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VVI"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_VVIR"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VVIR"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_rate_adjust"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VVIR.rate_adjust"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "is_rate_adjust2"\
+      Description  "StateActiveChild"\
+      SFName       ""\
+      Path         "VVIR.rate_adjust2"\
+      SrcLocation  ""\
+    }\
+    ChartData {\
+      Name         "temporalCounter_i1"\
+      Description  "TemporalCounter"\
+      SFName       ""\
+      Path         ""\
+      SrcLocation  ""\
+    }\
+  }
+  %return ChartDataElements
+%endfunction
